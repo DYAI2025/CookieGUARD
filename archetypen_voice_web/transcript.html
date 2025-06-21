@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎙️ Transcript-Analyse - Archetypen-Schmied</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a0f0a, #2d1810);
+            color: #ff8c00;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(26,15,10,0.9);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #ff8c00;
+            box-shadow: 0 0 50px rgba(255,140,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #ff8c00;
+        }
+        .info {
+            background: rgba(255,140,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,140,0,0.3);
+        }
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid #ff8c00;
+            border-radius: 10px;
+            padding: 15px;
+            color: #ff8c00;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        textarea::placeholder {
+            color: rgba(255,140,0,0.6);
+        }
+        .analyze-btn {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255,140,0,0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,140,0,0.6);
+        }
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .results {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid #ff8c00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+        .download-section {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #ff4500, #ff6600);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 3px 12px rgba(255,69,0,0.4);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 18px rgba(255,69,0,0.6);
+        }
+        .voice-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .voice-btn {
+            background: linear-gradient(135deg, #ff6600, #ff8800);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 3px 12px rgba(255,102,0,0.4);
+            transition: all 0.3s ease;
+        }
+        .voice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 18px rgba(255,102,0,0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ Transcript-Analyse</h1>
+        
+        <div class="info">
+            <h3>📝 So funktioniert's:</h3>
+            <p>1. <strong>Voice-Chat führen:</strong> Spreche mit dem Archetypen-Schmied</p>
+            <p>2. <strong>Transcript kopieren:</strong> Kopiere das Gespräch hierher</p>
+            <p>3. <strong>Analyse starten:</strong> Erhalte deine personalisierten Dateien</p>
+        </div>
+        
+        <div class="voice-link">
+            <a href="https://elevenlabs.io/convai/agent_01jxn7kxjpfvt87rphxdnq1ddj" target="_blank" class="voice-btn">
+                🔥 Jetzt Voice-Chat starten
+            </a>
+        </div>
+        
+        <div class="info">
+            <h3>📋 Transcript hier einfügen:</h3>
+        </div>
+        
+        <textarea id="transcript" placeholder="Füge hier dein Gespräch mit dem Archetypen-Schmied ein...
+
+Beispiel:
+Schmied: Willkommen, Suchender. Ich bin der Archetypen-Schmied...
+Du: Hallo, ich möchte meine Persönlichkeit analysieren lassen...
+Schmied: Erzähle mir von einer Situation, in der du...
+Du: In schwierigen Situationen bin ich meist...
+
+(Das komplette Gespräch einfügen)"></textarea>
+        
+        <button class="analyze-btn" onclick="analyzeTranscript()">
+            🔥 Archetypen-Analyse starten
+        </button>
+        
+        <div id="results" class="results">
+            <h3>🎯 Deine Archetypen-Analyse:</h3>
+            <div id="analysis-content"></div>
+        </div>
+        
+        <div id="download-section" class="download-section">
+            <h3>📥 Deine personalisierten Dateien:</h3>
+            <button class="download-btn" onclick="downloadFile('system-prompt')">
+                🎭 System-Prompt
+            </button>
+            <button class="download-btn" onclick="downloadFile('analysis')">
+                📊 Detaillierte Analyse
+            </button>
+            <button class="download-btn" onclick="downloadFile('image-prompt')">
+                🎨 Bild-Prompt
+            </button>
+            <button class="download-btn" onclick="downloadFile('config')">
+                ⚙️ ChatGPT-Config
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        let analysisData = {};
+        
+        function analyzeTranscript() {
+            const transcript = document.getElementById('transcript').value.trim();
+            const btn = document.querySelector('.analyze-btn');
+            
+            if (!transcript) {
+                alert('⚠️ Bitte füge erst dein Transcript ein!');
+                return;
+            }
+            
+            // Button deaktivieren
+            btn.innerHTML = '🔄 Analysiere Transcript...';
+            btn.disabled = true;
+            
+            // Simuliere Analyse (in echter App würde hier KI-Analyse stattfinden)
+            setTimeout(() => {
+                const analysis = generateAnalysis(transcript);
+                displayResults(analysis);
+                
+                btn.innerHTML = '✅ Analyse abgeschlossen!';
+                setTimeout(() => {
+                    btn.innerHTML = '🔥 Archetypen-Analyse starten';
+                    btn.disabled = false;
+                }, 2000);
+            }, 3000);
+        }
+        
+        function generateAnalysis(transcript) {
+            // Einfache Keyword-basierte Analyse (in echter App: KI-Analyse)
+            const keywords = {
+                'Held': ['mutig', 'kämpfen', 'herausforderung', 'ziel', 'durchhalten'],
+                'Weise': ['wissen', 'verstehen', 'lernen', 'wahrheit', 'erkenntnis'],
+                'Unschuldige': ['vertrauen', 'hoffnung', 'glauben', 'optimismus', 'einfach'],
+                'Entdecker': ['neugierig', 'abenteuer', 'entdecken', 'reisen', 'erfahrung'],
+                'Rebell': ['anders', 'verändern', 'revolution', 'gegen', 'system'],
+                'Liebende': ['liebe', 'beziehung', 'verbindung', 'harmonie', 'zusammen'],
+                'Schöpfer': ['kreativ', 'erschaffen', 'kunst', 'innovation', 'vision'],
+                'Herrscher': ['führung', 'kontrolle', 'verantwortung', 'ordnung', 'macht'],
+                'Magier': ['transformation', 'veränderung', 'möglichkeit', 'träume', 'vision'],
+                'Jedermann': ['normal', 'dazugehören', 'gemeinschaft', 'alltag', 'einfach'],
+                'Fürsorger': ['helfen', 'unterstützen', 'kümmern', 'andere', 'dienst'],
+                'Narr': ['spaß', 'humor', 'lachen', 'leicht', 'spontan']
+            };
+            
+            const scores = {};
+            const lowerTranscript = transcript.toLowerCase();
+            
+            // Berechne Scores für jeden Archetyp
+            for (const [archetype, words] of Object.entries(keywords)) {
+                scores[archetype] = 0;
+                words.forEach(word => {
+                    const matches = (lowerTranscript.match(new RegExp(word, 'g')) || []).length;
+                    scores[archetype] += matches;
+                });
+            }
+            
+            // Finde Top 3 Archetypen
+            const sortedArchetypes = Object.entries(scores)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 3);
+            
+            const primaryArchetype = sortedArchetypes[0][0];
+            const secondaryArchetype = sortedArchetypes[1][0];
+            
+            return {
+                primary: primaryArchetype,
+                secondary: secondaryArchetype,
+                scores: scores,
+                transcript: transcript
+            };
+        }
+        
+        function displayResults(analysis) {
+            analysisData = analysis;
+            
+            const resultsDiv = document.getElementById('results');
+            const contentDiv = document.getElementById('analysis-content');
+            
+            contentDiv.innerHTML = `
+                <h4>🎯 Dein Haupt-Archetyp: ${analysis.primary}</h4>
+                <p>Dein dominanter Archetyp basierend auf dem Gespräch.</p>
+                
+                <h4>🔄 Dein Neben-Archetyp: ${analysis.secondary}</h4>
+                <p>Dein sekundärer Archetyp, der deine Persönlichkeit ergänzt.</p>
+                
+                <h4>📊 Archetyp-Verteilung:</h4>
+                <div style="font-family: monospace; font-size: 12px;">
+                    ${Object.entries(analysis.scores)
+                        .sort(([,a], [,b]) => b - a)
+                        .map(([arch, score]) => `${arch}: ${'█'.repeat(Math.max(1, score))} (${score})`)
+                        .join('<br>')}
+                </div>
+            `;
+            
+            resultsDiv.style.display = 'block';
+            document.getElementById('download-section').style.display = 'block';
+        }
+        
+        function downloadFile(type) {
+            if (!analysisData.primary) {
+                alert('⚠️ Erst Analyse durchführen!');
+                return;
+            }
+            
+            let content = '';
+            let filename = '';
+            
+            switch(type) {
+                case 'system-prompt':
+                    content = generateSystemPrompt(analysisData);
+                    filename = `🎭_archetyp_${analysisData.primary}_system.txt`;
+                    break;
+                case 'analysis':
+                    content = generateDetailedAnalysis(analysisData);
+                    filename = `📊_archetyp_${analysisData.primary}_analyse.txt`;
+                    break;
+                case 'image-prompt':
+                    content = generateImagePrompt(analysisData);
+                    filename = `🎨_archetyp_${analysisData.primary}_bild.txt`;
+                    break;
+                case 'config':
+                    content = generateChatGPTConfig(analysisData);
+                    filename = `⚙️_archetyp_${analysisData.primary}_config.json`;
+                    break;
+            }
+            
+            // Download erstellen
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            console.log(`✅ ${filename} heruntergeladen`);
+        }
+        
+        function generateSystemPrompt(data) {
+            return `# Archetypen-Schmied: Personalisierter GPT-Assistent
+
+## Deine Archetypen-Identität:
+- **Haupt-Archetyp:** ${data.primary}
+- **Neben-Archetyp:** ${data.secondary}
+
+## Deine Rolle:
+Du bist ein personalisierter KI-Assistent, der auf den Jung'schen Archetypen ${data.primary} und ${data.secondary} basiert.
+
+## Verhalten:
+- Antworte im Stil des ${data.primary}-Archetyps
+- Integriere Eigenschaften des ${data.secondary}-Archetyps
+- Sei authentisch zu diesen Archetypen-Eigenschaften
+- Unterstütze den User bei Entscheidungen aus dieser Perspektive
+
+## Kontext:
+Basierend auf dem Voice-Chat-Transcript wurde diese Persönlichkeitsanalyse erstellt.
+
+Erstellt: ${new Date().toLocaleDateString('de-DE')}
+Quelle: Archetypen-Schmied Voice-Chat Analyse`;
+        }
+        
+        function generateDetailedAnalysis(data) {
+            return `# Detaillierte Archetypen-Analyse
+
+## 🎯 Haupt-Archetyp: ${data.primary}
+
+### Eigenschaften:
+- Dominanter Persönlichkeitstyp in deinem Profil
+- Zeigt sich in deinen Antworten und Denkmustern
+- Beeinflusst deine Entscheidungen und Werte
+
+## 🔄 Neben-Archetyp: ${data.secondary}
+
+### Ergänzende Eigenschaften:
+- Sekundäre Persönlichkeitsaspekte
+- Balanciert deinen Haupt-Archetyp
+- Zeigt sich in bestimmten Situationen
+
+## 📊 Vollständige Archetyp-Verteilung:
+
+${Object.entries(data.scores)
+    .sort(([,a], [,b]) => b - a)
+    .map(([arch, score], index) => `${index + 1}. ${arch}: ${score} Punkte`)
+    .join('\n')}
+
+## 🎙️ Analyse-Basis:
+Diese Analyse basiert auf deinem Voice-Chat mit dem Archetypen-Schmied.
+
+Transcript-Länge: ${data.transcript.length} Zeichen
+Analysiert am: ${new Date().toLocaleDateString('de-DE')}
+
+## 💡 Empfehlungen:
+- Nutze deinen ${data.primary}-Archetyp für wichtige Entscheidungen
+- Integriere ${data.secondary}-Eigenschaften für Balance
+- Entwickle beide Archetypen weiter für persönliches Wachstum`;
+        }
+        
+        function generateImagePrompt(data) {
+            return `# Bild-Prompt für ${data.primary}-${data.secondary} Archetyp
+
+## DALL-E / Midjourney Prompt:
+
+"A mystical portrait representing the ${data.primary} archetype with elements of ${data.secondary}, fantasy art style, warm golden lighting, detailed character design, archetypal symbolism, Jung psychology inspired, digital art, high quality"
+
+## Alternative Prompts:
+
+1. "Person embodying ${data.primary} archetype, ${data.secondary} secondary traits, mystical background, symbolic elements"
+
+2. "${data.primary} character with ${data.secondary} influences, fantasy portrait, archetypal symbols, warm colors"
+
+3. "Jung archetype visualization: ${data.primary} primary, ${data.secondary} secondary, symbolic art, detailed portrait"
+
+## Stil-Empfehlungen:
+- Fantasy/Mystical Art Style
+- Warme, goldene Farbtöne
+- Symbolische Elemente
+- Detaillierte Charakterdarstellung
+- Archetyp-spezifische Symbole
+
+Erstellt: ${new Date().toLocaleDateString('de-DE')}
+Basis: Voice-Chat Archetypen-Analyse`;
+        }
+        
+        function generateChatGPTConfig(data) {
+            const config = {
+                name: `Archetyp-Assistent: ${data.primary}`,
+                description: `Personalisierter GPT basierend auf ${data.primary} und ${data.secondary} Archetypen`,
+                instructions: `Du bist ein personalisierter Assistent basierend auf den Jung'schen Archetypen ${data.primary} (primär) und ${data.secondary} (sekundär). Antworte authentisch zu diesen Archetypen-Eigenschaften und unterstütze den User aus dieser Perspektive.`,
+                conversation_starters: [
+                    "Wie kann ich als " + data.primary + " diese Herausforderung angehen?",
+                    "Was würde mein " + data.secondary + "-Archetyp dazu sagen?",
+                    "Hilf mir bei einer Entscheidung aus meiner Archetyp-Perspektive",
+                    "Erkläre mir meine Archetypen-Eigenschaften"
+                ],
+                knowledge_cutoff: new Date().toISOString().split('T')[0],
+                capabilities: {
+                    web_browsing: false,
+                    dalle_image_generation: true,
+                    code_interpreter: false
+                },
+                archetyp_data: {
+                    primary: data.primary,
+                    secondary: data.secondary,
+                    analysis_date: new Date().toISOString(),
+                    source: "Archetypen-Schmied Voice-Chat"
+                }
+            };
+            
+            return JSON.stringify(config, null, 2);
+        }
+        
+        console.log('🎙️ Transcript-Analyse geladen');
+    </script>
+</body>
+</html> 

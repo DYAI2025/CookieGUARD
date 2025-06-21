@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Boston Dynamics</title>
+    <meta name="description" content="Boston Dynamics is creating practical robotics to tackle your toughest automation challenges and change your idea of what robots can do.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+        
+        /* Header */
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: #007acc;
+        }
+        
+        .cta-button {
+            background: #ff6600;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #e55a00;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Dropdown Menus */
+        .menu-item {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 20px;
+            min-width: 300px;
+            z-index: 1000;
+        }
+        
+        .menu-item:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-section h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .dropdown-section ul {
+            list-style: none;
+        }
+        
+        .dropdown-section li {
+            margin-bottom: 10px;
+        }
+        
+        .dropdown-section a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .dropdown-section small {
+            color: #666;
+            font-size: 12px;
+            display: block;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-section p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+        
+        /* Webinar Banner */
+        .webinar-banner {
+            background: #007acc;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .register-button {
+            background: white;
+            color: #007acc;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Trusted By Section */
+        .trusted-by {
+            padding: 60px 20px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        
+        .trusted-by h2 {
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .logo-item {
+            background: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Content Sections */
+        .spot-section, .stretch-section {
+            padding: 80px 20px;
+        }
+        
+        .spot-section {
+            background: #ffffff;
+        }
+        
+        .stretch-section {
+            background: #f8f9fa;
+        }
+        
+        .content-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .text-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .text-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .image-placeholder, .grid-image {
+            background: #e0e0e0;
+            padding: 40px 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Solutions Grid */
+        .solutions-grid {
+            padding: 80px 20px;
+            background: #ffffff;
+            text-align: center;
+        }
+        
+        .solutions-grid h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .solutions-grid > p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .grid-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .grid-item h4 {
+            padding: 20px;
+            color: #333;
+            font-size: 20px;
+        }
+        
+        .learn-more {
+            display: block;
+            padding: 0 20px 20px;
+            color: #007acc;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Other Sections */
+        .industries-section, .customer-success {
+            padding: 60px 20px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        
+        .atlas-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .atlas-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .atlas-section p {
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Featured Resources */
+        .featured-resources {
+            padding: 80px 20px;
+            background: #ffffff;
+        }
+        
+        .resources-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .resource-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .resource-item .category {
+            color: #ff6600;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .resource-item .type {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .resource-item h3 {
+            margin-top: 10px;
+            color: #333;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta-section h6 {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+        
+        /* Footer */
+        .site-footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            color: #ff6600;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .logo-placeholder {
+            background: #333;
+            color: #ff6600;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero-section h1 {
+                font-size: 32px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-container">
+                <a href="/" class="logo">Boston Dynamics</a>
+                
+                <ul class="nav-menu">
+                    <li class="menu-item has-dropdown">
+                        <a href="#products">Products</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <h3>Spot</h3>
+                                <ul>
+                                    <li><a href="#spot">Spot<br><small>Our agile mobile robot for dynamic sensing and industrial inspection</small></a></li>
+                                    <li><a href="#arm">Arm<br><small>An integrated arm to enable mobile manipulation</small></a></li>
+                                    <li><a href="#payload">Payload<br><small>Additional sensors and hardware to expand Spot's functionality</small></a></li>
+                                    <li><a href="#extras">Extras<br><small>Add-ons and accessories to keep Spot ready for work</small></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item has-dropdown">
+                        <a href="#solutions">Solutions</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <h3>Inspection</h3>
+                                <ul>
+                                    <li><a href="#inspection">Inspection<br><small>Automate industrial inspection</small></a></li>
+                                    <li><a href="#thermal">Thermal<br><small>Detect hotspots and thermal anomalies</small></a></li>
+                                    <li><a href="#visual">Visual<br><small>Perform visual inspections and integrate computer vision</small></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#atlas-innovation">Atlas & Innovation</a></li>
+                    <li><a href="#company">Company</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#support">Support</a></li>
+                    <li><a href="#contact-sales" class="cta-button">Contact Sales</a></li>
+                </ul>
+                
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Changing your idea of what robots can do.</h1>
+            <p>Discover practical robotics solutions designed to tackle today's—and tomorrow's—toughest automation challenges.</p>
+            <a href="#solutions" class="cta-button">Explore Solutions</a>
+        </section>
+
+        <!-- Webinar Banner -->
+        <section class="webinar-banner">
+            <p><strong>WEBINAR: Unlocking Full Facility Insights with AI</strong></p>
+            <a href="#register" class="register-button">Register Now</a>
+        </section>
+
+        <!-- Trusted By Section -->
+        <section class="trusted-by">
+            <h2>Trusted by industry-leading organizations around the world</h2>
+            <div class="logo-grid">
+                <div class="logo-item">DHL</div>
+                <div class="logo-item">bp</div>
+                <div class="logo-item">National Grid</div>
+                <div class="logo-item">Turner Construction</div>
+                <div class="logo-item">Woodside</div>
+                <div class="logo-item">Maersk</div>
+                <div class="logo-item">Virginia Tech</div>
+            </div>
+        </section>
+
+        <!-- Spot Section -->
+        <section class="spot-section">
+            <div class="content-grid">
+                <div class="text-content">
+                    <h2>Your teammate, your tool. Meet Spot.</h2>
+                    <p>Our agile, mobile robot will redefine your day-to-day. It works anywhere you work, gathering data, keeping people out of harm's way, and exploring without boundaries.</p>
+                    <a href="#spot" class="cta-button">Learn About Spot</a>
+                </div>
+                <div class="image-content">
+                    <div class="image-placeholder">Spot Robot - Yellow quadruped robot with IR camera</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stretch Section -->
+        <section class="stretch-section">
+            <div class="content-grid">
+                <div class="image-content">
+                    <div class="image-placeholder">Stretch Robot - Warehouse automation robot</div>
+                </div>
+                <div class="text-content">
+                    <h2>The Future of Warehouse Automation</h2>
+                    <p>Use Stretch to streamline case handling and trailer unloading operations. Easy to deploy and flexible, Stretch keeps your operations moving.</p>
+                    <a href="#stretch" class="cta-button">Learn About Stretch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Grid -->
+        <section class="solutions-grid">
+            <h2>Solutions for the real world</h2>
+            <p>Give your team the tools to make work better: find solutions to keep your operations productive and keep your people safe.</p>
+            
+            <div class="grid">
+                <div class="grid-item">
+                    <div class="grid-image">Industrial Inspection</div>
+                    <h4>Inspection</h4>
+                    <a href="#inspection" class="learn-more">Learn More</a>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-image">3D Laser Scanning</div>
+                    <h4>Digital Twin</h4>
+                    <a href="#digital-twin" class="learn-more">Learn More</a>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-image">Automated Warehousing</div>
+                    <h4>Warehouse Automation</h4>
+                    <a href="#warehouse-automation" class="learn-more">Learn More</a>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-image">Emergency Response</div>
+                    <h4>Safety & Response</h4>
+                    <a href="#safety-response" class="learn-more">Learn More</a>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-image">R&D Laboratory</div>
+                    <h4>Research & Development</h4>
+                    <a href="#research-development" class="learn-more">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries Section -->
+        <section class="industries-section">
+            <h4>Industries</h4>
+            <p>See how our robots are being put to work in your industry.</p>
+            <a href="#industries" class="learn-more">Learn More</a>
+        </section>
+
+        <!-- Customer Success Section -->
+        <section class="customer-success">
+            <h5>Our team for your success</h5>
+            <p>Our team is here to help you do more. Discover the support, services, and resources available to support your customer journey and help you unlock the full value of your robotics solutions.</p>
+            <a href="#customer-success" class="learn-more">Learn More</a>
+        </section>
+
+        <!-- Atlas Section -->
+        <section class="atlas-section">
+            <h2>Redefining robotics: Atlas & AI</h2>
+            <p>With innovation at our core, we're pushing the limits of mobility, dexterity, and intelligence with our next generation robots. Step into our lab and explore our state-of-the-art hardware and advanced control systems with Atlas.</p>
+            <a href="#atlas" class="cta-button">See Atlas in Action</a>
+        </section>
+
+        <!-- Featured Resources -->
+        <section class="featured-resources">
+            <div class="resources-header">
+                <h2>Featured resources</h2>
+                <a href="#all-resources" class="learn-more">View All Resources →</a>
+            </div>
+            
+            <div class="resources-grid">
+                <article class="resource-item">
+                    <span class="category">Product News</span>
+                    <span class="type">Blog</span>
+                    <span class="read-time">• 7 min read</span>
+                    <h3>Making Every Step Count with Spot</h3>
+                </article>
+                <article class="resource-item">
+                    <span class="category">Product News</span>
+                    <span class="type">Blog</span>
+                    <span class="read-time">• 5 min read</span>
+                    <h3>An Electric New Era for Atlas</h3>
+                </article>
+                <article class="resource-item">
+                    <span class="category">Warehouse Robotics</span>
+                    <span class="type">Video</span>
+                    <span class="read-time">• 8 min watch</span>
+                    <h3>The Evolution of Stretch</h3>
+                </article>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="content-wrapper">
+                <div class="image-placeholder">Spot Robot Close-up View</div>
+                <h6>Start building tomorrow's solutions today.</h6>
+                <p>Have a question about our robots? Reach out to our team.</p>
+                <a href="#get-started" class="cta-button">Get Started</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-placeholder">Boston Dynamics</div>
+            </div>
+            
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>NAVIGATION</h3>
+                    <ul>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#industry">Industry</a></li>
+                        <li><a href="#innovation">Innovation</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact-sales">Contact Sales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>HELPFUL LINKS</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#merch-store">Merch Store</a></li>
+                        <li><a href="#support">Support</a></li>
+                        <li><a href="#partners">Partners</a></li>
+                        <li><a href="#press-inquiries">Press Inquiries</a></li>
+                        <li><a href="#developer-documentation">Developer Documentation</a></li>
+                        <li><a href="#security">Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>RESOURCES</h3>
+                    <ul>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="#webinars">Webinars</a></li>
+                        <li><a href="#blogs">Blogs</a></li>
+                        <li><a href="#whitepapers">Whitepapers</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#videos">Videos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>©2024 Boston Dynamics. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy-policy">Privacy Policy</a>
+                <a href="#terms-of-use">Terms of Use</a>
+                <a href="#ethics-statement">Ethics Statement</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

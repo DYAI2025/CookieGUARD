@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookieQuitter - Popup Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .test-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .popup-frame {
+            border: 2px solid #ddd;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 20px auto;
+            width: 400px;
+            height: 600px;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🤖 CookieQuitter Popup Test</h1>
+        <p>Hier siehst du das Popup in einem isolierten Frame:</p>
+        
+        <div class="popup-frame">
+            <iframe src="popup.html"></iframe>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+            <h3>🔧 Debug-Info:</h3>
+            <ul>
+                <li>Popup-Größe: 400x600px</li>
+                <li>CSS wird aus popup.css geladen</li>
+                <li>JavaScript aus popup.js geladen</li>
+                <li>Alle Icons sollten sichtbar sein</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html> 

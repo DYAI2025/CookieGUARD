@@ -430,3 +430,301 @@ chrome.runtime.onStartup.addListener(async () => {
 
 // Initialize service worker
 new CookieGuardianService();
+
+// 🤖 CookieGUARD Bot - Proaktiver Cookie-Präferenz-Manager
+class CookiePreferenceBot {
+  constructor() {
+    this.isRunning = false;
+    this.userPreferences = {
+      defaultAction: 'block', // 'block', 'essential', 'accept'
+      customSites: new Map()
+    };
+    this.favoritesSites = [];
+    this.processedSites = new Set();
+    this.botQueue = [];
+  }
+
+  // 📊 Browser-Verlauf analysieren
+  async analyzeBrowserHistory() {
+    try {
+      const history = await chrome.history.search({
+        text: '',
+        maxResults: 500,
+        startTime: Date.now() - (30 * 24 * 60 * 60 * 1000) // Letzten 30 Tage
+      });
+
+      // Top-Sites nach Besuchshäufigkeit
+      const siteVisits = new Map();
+      
+      history.forEach(item => {
+        try {
+          const domain = new URL(item.url).hostname.replace('www.', '');
+          siteVisits.set(domain, (siteVisits.get(domain) || 0) + item.visitCount);
+        } catch (e) {
+          // Ignore invalid URLs
+        }
+      });
+
+      // Sortiere nach Popularität
+      this.favoritesSites = Array.from(siteVisits.entries())
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 50) // Top 50 Sites
+        .map(([domain, visits]) => ({ domain, visits }));
+
+      console.log('🎯 CookieBot: Lieblings-Sites analysiert:', this.favoritesSites.length);
+      return this.favoritesSites;
+    } catch (error) {
+      console.error('Error analyzing history:', error);
+      return [];
+    }
+  }
+
+  // 🚀 Bot starten
+  async startCookieBot(userPreference = 'block') {
+    if (this.isRunning) {
+      console.log('🤖 CookieBot läuft bereits');
+      return;
+    }
+
+    this.isRunning = true;
+    this.userPreferences.defaultAction = userPreference;
+
+    console.log('🤖 CookieBot gestartet - Analysiere Browser-Verlauf...');
+    
+    // 1. Browser-Verlauf analysieren
+    await this.analyzeBrowserHistory();
+    
+    // 2. Bot-Queue erstellen
+    this.botQueue = this.favoritesSites
+      .filter(site => !this.processedSites.has(site.domain))
+      .slice(0, 20); // Starte mit Top 20
+
+    console.log(`🎯 CookieBot: ${this.botQueue.length} Sites in der Queue`);
+
+    // 3. Bot-Verarbeitung starten (langsam, um nicht zu spammen)
+    this.processBotQueue();
+  }
+
+  // 🔄 Bot-Queue abarbeiten
+  async processBotQueue() {
+    if (!this.isRunning || this.botQueue.length === 0) {
+      this.isRunning = false;
+      console.log('✅ CookieBot fertig!');
+      this.sendBotCompletedNotification();
+      return;
+    }
+
+    const site = this.botQueue.shift();
+    console.log(`🤖 CookieBot besucht: ${site.domain}`);
+
+    try {
+      await this.visitSiteAndSetPreferences(site);
+      this.processedSites.add(site.domain);
+      
+      // 📊 Progress speichern
+      await this.saveBotProgress();
+      
+    } catch (error) {
+      console.error(`❌ CookieBot Fehler bei ${site.domain}:`, error);
+    }
+
+    // Nächste Site nach Delay (5-10 Sekunden)
+    const delay = 5000 + Math.random() * 5000;
+    setTimeout(() => this.processBotQueue(), delay);
+  }
+
+  // 🌐 Site besuchen und Cookie-Präferenzen setzen
+  async visitSiteAndSetPreferences(site) {
+    return new Promise((resolve, reject) => {
+      // Erstelle versteckten Tab
+      chrome.tabs.create({
+        url: `https://${site.domain}`,
+        active: false, // Im Hintergrund
+        pinned: false
+      }, async (tab) => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+          return;
+        }
+
+        // Warte auf Tab-Load
+        const listener = (tabId, changeInfo) => {
+          if (tabId === tab.id && changeInfo.status === 'complete') {
+            chrome.tabs.onUpdated.removeListener(listener);
+            
+            // Injiziere Cookie-Bot-Script
+            this.injectCookieBotScript(tab.id, site)
+              .then(() => {
+                // Schließe Tab nach 10 Sekunden
+                setTimeout(() => {
+                  chrome.tabs.remove(tab.id);
+                  resolve();
+                }, 10000);
+              })
+              .catch(reject);
+          }
+        };
+
+        chrome.tabs.onUpdated.addListener(listener);
+
+        // Timeout nach 30 Sekunden
+        setTimeout(() => {
+          chrome.tabs.onUpdated.removeListener(listener);
+          chrome.tabs.remove(tab.id);
+          reject(new Error('Timeout'));
+        }, 30000);
+      });
+    });
+  }
+
+  // 💉 Cookie-Bot-Script injizieren
+  async injectCookieBotScript(tabId, site) {
+    const botScript = this.generateCookieBotScript(site);
+    
+    try {
+      await chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        func: botScript,
+        args: [this.userPreferences.defaultAction, site.domain]
+      });
+    } catch (error) {
+      console.error(`❌ Script injection failed for ${site.domain}:`, error);
+    }
+  }
+
+  // 🧠 Bot-Script generieren
+  generateCookieBotScript(site) {
+    return function(preference, domain) {
+      console.log(`🤖 CookieBot aktiv auf ${domain} - Präferenz: ${preference}`);
+      
+      // Cookie-Banner Selektoren (erweitert)
+      const bannerSelectors = [
+        '#onetrust-consent-sdk', '#usercentrics-cmp', '#CybotCookiebotDialog',
+        '.cookie-banner', '.cookie-notice', '.gdpr-banner', '[id*="cookie"]',
+        '[class*="cookie"]', '[class*="consent"]', '[data-testid*="cookie"]'
+      ];
+
+      // Button-Pattern für verschiedene Aktionen
+      const buttonPatterns = {
+        block: [
+          'ablehnen', 'reject', 'decline', 'deny', 'alle ablehnen',
+          'nur erforderliche', 'nur notwendige', 'essential only'
+        ],
+        essential: [
+          'nur erforderliche', 'essential', 'notwendige cookies',
+          'funktionale cookies', 'auswahl bestätigen'
+        ],
+        accept: [
+          'akzeptieren', 'accept', 'alle akzeptieren', 'zustimmen',
+          'einverstanden', 'allow all'
+        ]
+      };
+
+      // Suche Cookie-Banner
+      let banner = null;
+      for (const selector of bannerSelectors) {
+        const element = document.querySelector(selector);
+        if (element && element.offsetHeight > 0) {
+          banner = element;
+          break;
+        }
+      }
+
+      if (!banner) {
+        console.log('🤖 Kein Cookie-Banner gefunden');
+        return;
+      }
+
+      console.log('🎯 CookieBot: Banner gefunden!', banner);
+
+      // Finde passenden Button
+      const patterns = buttonPatterns[preference] || buttonPatterns.block;
+      const buttons = banner.querySelectorAll('button, a, [role="button"]');
+      
+      for (const button of buttons) {
+        const text = button.textContent.toLowerCase().trim();
+        const isMatch = patterns.some(pattern => text.includes(pattern));
+        
+        if (isMatch) {
+          console.log(`✅ CookieBot: Klicke "${preference}" Button:`, text);
+          
+          // Simuliere menschlichen Klick
+          button.focus();
+          button.click();
+          
+          // Zusätzliche Events
+          button.dispatchEvent(new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true
+          }));
+          
+          // Speichere Erfolg
+          window.postMessage({
+            type: 'COOKIEBOT_SUCCESS',
+            domain: domain,
+            action: preference,
+            buttonText: text
+          }, '*');
+          
+          break;
+        }
+      }
+    };
+  }
+
+  // 💾 Bot-Progress speichern
+  async saveBotProgress() {
+    const progress = {
+      processedSites: Array.from(this.processedSites),
+      totalSites: this.favoritesSites.length,
+      lastRun: Date.now(),
+      userPreferences: this.userPreferences
+    };
+
+    await chrome.storage.local.set({ cookieBotProgress: progress });
+  }
+
+  // 📩 Bot-Completion Benachrichtigung
+  sendBotCompletedNotification() {
+    chrome.notifications.create({
+      type: 'basic',
+      iconUrl: 'icons/icon-48.png',
+      title: '🤖 CookieBot Fertig!',
+      message: `${this.processedSites.size} Sites konfiguriert. Du kannst jetzt entspannt surfen! 🎉`
+    });
+  }
+
+  // ⏹️ Bot stoppen
+  stopBot() {
+    this.isRunning = false;
+    this.botQueue = [];
+    console.log('🛑 CookieBot gestoppt');
+  }
+}
+
+// Bot-Instanz erstellen
+const cookieBot = new CookiePreferenceBot();
+
+// Message Listener für Bot-Kontrolle
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'startCookieBot') {
+    cookieBot.startCookieBot(request.preference)
+      .then(() => sendResponse({ success: true }))
+      .catch(error => sendResponse({ success: false, error: error.message }));
+    return true;
+  }
+  
+  if (request.action === 'stopCookieBot') {
+    cookieBot.stopBot();
+    sendResponse({ success: true });
+  }
+  
+  if (request.action === 'getBotStatus') {
+    sendResponse({
+      isRunning: cookieBot.isRunning,
+      processedSites: cookieBot.processedSites.size,
+      queueLength: cookieBot.botQueue.length
+    });
+  }
+});

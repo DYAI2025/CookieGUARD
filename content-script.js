@@ -11,6 +11,10 @@ class CookieGuardianContent {
     this.maxRetries = 3;
     this.observer = null;
     
+    // 🔧 NEW: Erweiterte Konfiguration
+    this.useShadowDOM = false; // Experimentell
+    this.overlayVisibilityObserver = null;
+    
     // German cookie banner patterns
     this.bannerSelectors = [
       // OneTrust
@@ -485,35 +489,80 @@ class CookieGuardianContent {
 
     const overlay = this.createOverlay(riskLevel);
     
-    // Sichere Positionierung oben mittig
+    // 🔧 IMPROVED: Verbesserte Positionierung mit modernem z-index
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Sichere Positionierung mit calc(infinity) z-index
     overlay.style.cssText = `
       position: fixed !important;
-      top: 20px !important;
+      top: 50% !important;
       left: 50% !important;
-      transform: translateX(-50%) !important;
-      z-index: 2147483647 !important;
+      transform: translate(-50%, -50%) !important;
+      z-index: calc(infinity) !important;
       width: auto !important;
       max-width: 95vw !important;
       pointer-events: auto !important;
       margin: 0 !important;
       padding: 0 !important;
       box-sizing: border-box !important;
+      isolation: isolate !important;
+      contain: layout style paint !important;
     `;
+    
+    // Mobile Anpassungen
+    if (viewportWidth < 768) {
+      overlay.style.top = '20px';
+      overlay.style.left = '20px';
+      overlay.style.right = '20px';
+      overlay.style.transform = 'none';
+      overlay.style.width = 'calc(100vw - 40px)';
+      overlay.style.maxWidth = 'calc(100vw - 40px)';
+    }
+    
+    // Fallback für Browser ohne calc(infinity) Support
+    setTimeout(() => {
+      const computedZIndex = window.getComputedStyle(overlay).zIndex;
+      if (!computedZIndex || computedZIndex === 'auto' || computedZIndex === '0') {
+        overlay.style.zIndex = '2147483647';
+        console.log('🎯 Fallback zu numerischem z-index');
+      }
+    }, 100);
     
     document.body.appendChild(overlay);
 
     console.log('🎯 Guardian Overlay angezeigt:', {
       position: overlay.style.position,
       top: overlay.style.top,
-      zIndex: overlay.style.zIndex
+      left: overlay.style.left,
+      zIndex: overlay.style.zIndex,
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+      banner: banner ? `${banner.getBoundingClientRect().top}-${banner.getBoundingClientRect().bottom}` : 'none'
     });
 
     // Add event listeners
     this.setupOverlayListeners(overlay);
 
+    // 🔧 IMPROVED: Visibility monitoring
+    if (window.IntersectionObserver) {
+      this.overlayVisibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio < 0.8) {
+            console.warn('🎯 Guardian Overlay teilweise verdeckt');
+            // Repositionierung zu sicherer Position
+            overlay.style.top = '50%';
+            overlay.style.left = '50%';
+            overlay.style.transform = 'translate(-50%, -50%)';
+          }
+        });
+      }, { threshold: [0.8] });
+      
+      this.overlayVisibilityObserver.observe(overlay);
+    }
+
     // Auto-hide nach 15 Sekunden, falls keine Interaktion
     setTimeout(() => {
-      if (overlay.parentNode) {
+      if (overlay.parentNode || (overlay.getRootNode && overlay.getRootNode() !== document)) {
         this.hideOverlay(overlay);
         // Setze Default-Einstellung und wende sie an
         this.saveDomainSetting('block').then(() => {
@@ -1469,6 +1518,231 @@ class CookieGuardianContent {
         }
       }, delay);
     });
+    
+    // Additional retry mechanism
+    if (this.currentRetryCount < this.maxRetries) {
+      this.currentRetryCount++;
+      setTimeout(() => this.startBannerDetection(), 2000);
+    }
+  }
+
+  // 🔧 NEW: Intelligente Overlay-Positionierung
+  positionOverlayIntelligently(overlay, banner) {
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const bannerRect = banner ? banner.getBoundingClientRect() : null;
+    
+    let position = {
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)'
+    };
+    
+    // Prüfe Banner-Position und Viewport
+    if (bannerRect) {
+      if (bannerRect.top > 400) {
+        // Banner ist unten, Overlay oben
+        position.top = '20px';
+        position.transform = 'translateX(-50%)';
+      } else if (bannerRect.bottom < viewportHeight - 400) {
+        // Banner ist oben, Overlay darunter
+        position.top = Math.min(bannerRect.bottom + 20, viewportHeight - 400) + 'px';
+        position.transform = 'translateX(-50%)';
+      }
+    }
+    
+    // Mobile Anpassungen
+    if (viewportWidth < 768) {
+      position.top = '20px';
+      position.left = '20px';
+      position.transform = 'none';
+      overlay.style.right = '20px';
+      overlay.style.width = 'calc(100vw - 40px)';
+    }
+    
+    // Positionierung anwenden
+    overlay.style.position = 'fixed';
+    overlay.style.top = position.top;
+    overlay.style.left = position.left;
+    overlay.style.transform = position.transform;
+  }
+
+  applyModernZIndex(overlay) {
+    const modernZIndex = 'calc(infinity)';
+    const fallbackZIndex = '2147483647';
+    
+    overlay.style.zIndex = modernZIndex;
+    
+    // Test für Browser-Kompatibilität
+    const testElement = document.createElement('div');
+    testElement.style.zIndex = modernZIndex;
+    
+    if (!testElement.style.zIndex || testElement.style.zIndex === '') {
+      overlay.style.zIndex = fallbackZIndex;
+      console.log('🎯 Fallback zu numerischem z-index');
+    }
+    
+    // Zusätzliche Stacking-Context Eigenschaften
+    overlay.style.isolation = 'isolate';
+    overlay.style.contain = 'layout style paint';
+  }
+
+  attachOverlayToDOM(overlay) {
+    // Standard DOM-Anhängen mit Verbesserungen
+    overlay.style.pointerEvents = 'auto';
+    overlay.style.boxSizing = 'border-box';
+    overlay.style.margin = '0';
+    overlay.style.padding = '0';
+    
+    document.body.appendChild(overlay);
+    
+    // Sicherstellen, dass Overlay sichtbar ist
+    requestAnimationFrame(() => {
+      if (overlay.offsetHeight === 0 || overlay.offsetWidth === 0) {
+        console.warn('🎯 Overlay unsichtbar, repositioniere...');
+        this.repositionOverlay(overlay);
+      }
+    });
+  }
+
+  setupOverlayVisibilityMonitoring(overlay) {
+    if (!window.IntersectionObserver) return;
+    
+    this.overlayVisibilityObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio < 0.8) {
+          console.warn('🎯 Guardian Overlay teilweise verdeckt, korrigiere Position');
+          this.repositionOverlay(overlay);
+        }
+      });
+    }, {
+      threshold: [0.1, 0.5, 0.8, 1.0]
+    });
+    
+    this.overlayVisibilityObserver.observe(overlay);
+  }
+}
+
+  // 🔧 NEW: Hilfsmethoden für verbesserte Overlay-Funktionalität
+  getShadowDOMStyles() {
+    return `
+      /* Shadow DOM spezifische Styles */
+      :host {
+        all: initial;
+        position: fixed !important;
+        pointer-events: auto !important;
+        z-index: calc(infinity) !important;
+      }
+    `;
+  }
+
+  setupOverlayVisibilityCheck(overlay) {
+    if (!window.IntersectionObserver) return;
+    
+    this.overlayVisibilityObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio < 0.1) {
+          console.warn('🎯 Guardian Overlay teilweise verdeckt, korrigiere Position');
+          this.repositionOverlay(overlay);
+        }
+      });
+    }, {
+      threshold: [0.1, 0.5, 0.9]
+    });
+    
+    this.overlayVisibilityObserver.observe(overlay);
+  }
+
+  repositionOverlay(overlay) {
+    const rect = overlay.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    
+    // Prüfe ob Overlay sichtbar ist
+    if (rect.bottom > viewportHeight || rect.right > viewportWidth || rect.top < 0 || rect.left < 0) {
+      // Repositioniere zu sicherer Position
+      overlay.style.top = '20px';
+      overlay.style.left = '50%';
+      overlay.style.transform = 'translateX(-50%)';
+      
+      // Mobile Fallback
+      if (viewportWidth < 768) {
+        overlay.style.left = '10px';
+        overlay.style.transform = 'none';
+        overlay.style.right = '10px';
+      }
+      
+      console.log('🎯 Overlay repositioniert:', {
+        original: rect,
+        viewport: `${viewportWidth}x${viewportHeight}`
+      });
+    }
+  }
+
+  // 🔧 IMPROVED: Erweiterte Banner-Erkennung mit besserer Retry-Logik
+  detectBannersEnhanced() {
+    const startTime = Date.now();
+    
+    // Prüfe alle bekannten Selektoren
+    for (const selector of this.bannerSelectors) {
+      const elements = document.querySelectorAll(selector);
+      
+      for (const element of elements) {
+        if (this.isVisible(element) && !element.hasAttribute('data-guardian-processed')) {
+          element.setAttribute('data-guardian-processed', 'true');
+          
+          console.log('🎯 Enhanced Banner Detection:', {
+            selector: selector,
+            element: element.tagName,
+            dimensions: element.getBoundingClientRect(),
+            timing: Date.now() - startTime
+          });
+          
+          this.handleBannerDetected(element);
+          return true;
+        }
+      }
+    }
+    
+    // Erweiterte Heuristik für dynamische Banner
+    return this.detectDynamicBanners();
+  }
+
+  detectDynamicBanners() {
+    // Suche nach Elementen mit Cookie-bezogenen Texten
+    const cookieTexts = [
+      'cookie', 'cookies', 'datenschutz', 'privacy', 'consent', 
+      'einwilligung', 'zustimmung', 'tracking', 'gdpr', 'dsgvo'
+    ];
+    
+    const allElements = document.querySelectorAll('div, section, aside, footer, header');
+    
+    for (const element of allElements) {
+      if (element.hasAttribute('data-guardian-processed')) continue;
+      
+      const text = element.textContent.toLowerCase();
+      const hasButtons = element.querySelectorAll('button, a, [role="button"]').length >= 2;
+      const isVisible = this.isVisible(element);
+      const isLargeEnough = element.offsetWidth > 200 && element.offsetHeight > 50;
+      
+      if (isVisible && isLargeEnough && hasButtons) {
+        const cookieTextMatches = cookieTexts.filter(term => text.includes(term)).length;
+        
+        if (cookieTextMatches >= 2) {
+          element.setAttribute('data-guardian-processed', 'true');
+          console.log('🎯 Dynamic Banner detected:', {
+            element: element.tagName,
+            matches: cookieTextMatches,
+            buttons: hasButtons
+          });
+          
+          this.handleBannerDetected(element);
+          return true;
+        }
+      }
+    }
+    
+    return false;
   }
 }
 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookieQuitter</title>
+    <link rel="stylesheet" href="popup.css">
+    <style>
+        /* Fallback styles für Extension */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 400px;
+            min-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1>CookieQuitter</h1>
+            </div>
+            <div class="tagline">Nie wieder Cookie-Banner!</div>
+        </div>
+
+        <!-- Legal Notice -->
+        <div class="legal-notice">
+            <div class="legal-icon">⚖️</div>
+            <div class="legal-text">
+                <strong>Rechtlicher Hinweis:</strong> Du bestätigst, dass du berechtigt bist, Cookie-Einstellungen auf den angegebenen Websites zu ändern. Der Bot agiert in deinem Namen.
+            </div>
+        </div>
+
+        <!-- Website Input Section -->
+        <div class="website-section">
+            <h3>🌐 Websites hinzufügen:</h3>
+            
+            <div class="input-group">
+                <input type="url" id="website-input" placeholder="https://example.com" />
+                <button id="add-website" class="btn btn-small">
+                    <span class="btn-icon">➕</span>
+                    Hinzufügen
+                </button>
+            </div>
+
+            <div class="quick-add">
+                <span class="quick-label">Schnell hinzufügen:</span>
+                <button class="quick-btn" data-action="history">📊 Aus Verlauf</button>
+                <button class="quick-btn" data-action="bookmarks">⭐ Aus Lesezeichen</button>
+            </div>
+
+            <!-- Website List -->
+            <div class="website-list" id="website-list">
+                <div class="list-header">
+                    <span>Website</span>
+                    <span>Status</span>
+                    <span>Aktion</span>
+                </div>
+                <!-- Websites werden hier dynamisch eingefügt -->
+            </div>
+        </div>
+
+        <!-- Cookie Preference -->
+        <div class="preference-section">
+            <h3>🎯 Cookie-Präferenz:</h3>
+            
+            <div class="preference-selector">
+                <div class="preference-option" data-preference="block">
+                    <input type="radio" id="pref-block" name="preference" value="block" checked>
+                    <label for="pref-block">
+                        <span class="pref-icon">🚫</span>
+                        <span class="pref-title">Cookies ablehnen</span>
+                        <span class="pref-desc">Nur essentiell notwendige</span>
+                    </label>
+                </div>
+
+                <div class="preference-option" data-preference="essential">
+                    <input type="radio" id="pref-essential" name="preference" value="essential">
+                    <label for="pref-essential">
+                        <span class="pref-icon">⚖️</span>
+                        <span class="pref-title">Funktionale Cookies</span>
+                        <span class="pref-desc">Essentiell + Funktionale</span>
+                    </label>
+                </div>
+
+                <div class="preference-option" data-preference="accept">
+                    <input type="radio" id="pref-accept" name="preference" value="accept">
+                    <label for="pref-accept">
+                        <span class="pref-icon">✅</span>
+                        <span class="pref-title">Alle akzeptieren</span>
+                        <span class="pref-desc">Alle Cookies inkl. Tracking</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bot Controls -->
+        <div class="bot-controls">
+            <button id="start-bot" class="btn btn-primary">
+                <span class="btn-icon">🚀</span>
+                Bot starten (<span id="queue-count">0</span> Sites)
+            </button>
+            
+            <button id="stop-bot" class="btn btn-secondary" style="display: none;">
+                <span class="btn-icon">⏹️</span>
+                Bot stoppen
+            </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container" id="progress-container" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0 / 0 Sites verarbeitet</div>
+        </div>
+
+        <!-- Status -->
+        <div class="status-section">
+            <div class="status-card" id="status-card">
+                <div class="status-indicator" id="status-indicator">⏹️</div>
+                <div class="status-text">
+                    <div class="status-title" id="status-title">Bot bereit</div>
+                    <div class="status-detail" id="status-detail">Füge Websites hinzu und starte den Bot</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-section">
+            <div class="action-buttons">
+                <button id="clear-all" class="btn btn-outline">
+                    <span class="btn-icon">🗑️</span>
+                    Alle löschen
+                </button>
+                
+                <button id="export-list" class="btn btn-outline">
+                    <span class="btn-icon">📤</span>
+                    Liste exportieren
+                </button>
+            </div>
+        </div>
+
+        <!-- Legal Footer -->
+        <div class="legal-footer">
+            <div class="legal-disclaimer">
+                <strong>⚖️ Rechtliche Hinweise:</strong><br>
+                • Bot agiert nur auf von dir angegebenen Websites<br>
+                • Respektiert robots.txt und Terms of Service<br>
+                • Verwendet menschliche Geschwindigkeiten (3-8s Delay)<br>
+                • Alle Daten bleiben lokal auf deinem Gerät<br>
+                • Du trägst die Verantwortung für die Website-Auswahl
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast" style="display: none;">
+            <div class="toast-content">
+                <span class="toast-icon" id="toast-icon">✅</span>
+                <span class="toast-message" id="toast-message">Nachricht</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

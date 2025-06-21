@@ -1,20 +1,22 @@
 /* Cookie Guardian Overlay Styles - Enhanced with Crawl Data */
 .cookie-guardian-overlay {
   position: fixed !important;
-  top: 20px !important;
+  top: 50% !important;
   left: 50% !important;
-  transform: translateX(-50%) !important;
+  transform: translate(-50%, -50%) !important;
   width: auto !important;
   max-width: 95vw !important;
   height: auto !important;
   background: transparent !important;
-  z-index: 2147483647 !important;
+  z-index: calc(infinity) !important;
   display: block !important;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   pointer-events: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
+  isolation: isolate !important;
+  contain: layout style paint !important;
 }
 
 .guardian-popup {
@@ -187,10 +189,19 @@
 
 /* Mobile responsive */
 @media (max-width: 480px) {
+  .cookie-guardian-overlay {
+    top: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    transform: none !important;
+    width: calc(100vw - 40px) !important;
+    max-width: calc(100vw - 40px) !important;
+  }
+  
   .guardian-popup {
-    margin: 20px;
+    margin: 0;
     max-width: none;
-    width: calc(100% - 40px);
+    width: 100%;
   }
   
   .guardian-header {

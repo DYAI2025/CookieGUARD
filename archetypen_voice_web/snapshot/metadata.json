@@ -1,0 +1,32 @@
+{
+  "url": "https://apple.com",
+  "assets": {
+    "css": [
+      "https://apple.com/api-www/global-elements/global-header/v1/assets/globalheader.css",
+      "https://apple.com/ac/globalfooter/8/en_US/styles/ac-globalfooter.built.css",
+      "https://apple.com/ac/localnav/9/styles/ac-localnav.built.css",
+      "https://apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "https://apple.com/v/home/cf/built/styles/main.built.css",
+      "https://apple.com/autopush/us/fam-gallery/fam-gallery.built.css",
+      "https://apple.com/ac/ac-films/7.2.0/styles/modal.css"
+    ],
+    "js": [
+      "https://apple.com/metrics/ac-target/latest/ac-target.js",
+      "https://apple.com/v/home/cf/built/scripts/head.built.js",
+      "https://apple.com/api-www/global-elements/global-header/v1/assets/globalheader.umd.js",
+      "https://apple.com/metrics/ac-analytics/2.25.0/scripts/ac-analytics.js",
+      "https://apple.com/autopush/us/fam-gallery/fam-gallery.built.js",
+      "https://apple.com/ac/globalfooter/8/en_US/scripts/ac-globalfooter.built.js",
+      "https://apple.com/ac/localeswitcher/4/en_US/scripts/localeswitcher.built.js",
+      "https://apple.com/v/home/cf/built/scripts/main.built.js",
+      "https://apple.com/ac/ac-films/7.2.0/scripts/autofilms.built.js",
+      "https://apple.com/metrics/data-relay/1.1.4/scripts/data-relay.js",
+      "https://apple.com/metrics/data-relay/1.1.4/scripts/auto-relay.js"
+    ],
+    "images": [],
+    "fonts": [],
+    "other": []
+  },
+  "timestamp": "109093.90709425",
+  "downloaded_count": 17
+}

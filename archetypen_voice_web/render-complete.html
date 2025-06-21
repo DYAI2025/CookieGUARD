@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Archetypen-Schmied - Mystische Analyse</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a0f0a, #2d1810);
+            color: #ff8c00;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .fire-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,140,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px #ff8c00;
+        }
+        
+        .mystical-voice {
+            background: rgba(255,140,0,0.1);
+            border: 2px solid #ff8c00;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .voice-btn {
+            background: linear-gradient(135deg, #ff4500, #ff6600);
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 15px;
+            font-size: 1.2em;
+            box-shadow: 0 6px 25px rgba(255,69,0,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .voice-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255,69,0,0.6);
+        }
+        
+        .questions-section {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,140,0,0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .question {
+            background: rgba(255,140,0,0.1);
+            border: 1px solid rgba(255,140,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .question h4 {
+            color: #ff8c00;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .question-options {
+            margin: 15px 0;
+        }
+        
+        .question-options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .question-options label:hover {
+            background: rgba(255,140,0,0.1);
+        }
+        
+        .question-options input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .follow-up {
+            margin-top: 15px;
+        }
+        
+        .follow-up textarea {
+            width: 100%;
+            min-height: 80px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,140,0,0.5);
+            border-radius: 8px;
+            padding: 12px;
+            color: #ff8c00;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+        }
+        
+        .follow-up textarea::placeholder {
+            color: rgba(255,140,0,0.6);
+        }
+        
+        .analyze-btn {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 30px auto;
+            display: block;
+            box-shadow: 0 6px 25px rgba(255,140,0,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255,140,0,0.6);
+        }
+        
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results {
+            display: none;
+            background: rgba(255,140,0,0.1);
+            border: 2px solid #ff8c00;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #ff4500, #ff6600);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,69,0,0.4);
+            font-size: 1em;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,69,0,0.6);
+        }
+        
+        .progress-bar {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fire-bg"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🔥 Archetypen-Schmied</h1>
+            <p>Mystische Persönlichkeitsanalyse mit dem großartigen AI-Bot</p>
+        </div>
+        
+        <!-- Mystischer Voice-Bot -->
+        <div class="mystical-voice">
+            <h2>🎙️ Der Mystische Archetypen-Schmied</h2>
+            <p>Spreche mit dem großartigen AI-Bot, der deine Seele durchschaut und deine wahren Archetypen erkennt.</p>
+            <a href="https://elevenlabs.io/convai/agent_01jxn7kxjpfvt87rphxdnq1ddj" target="_blank" class="voice-btn">
+                🔥 Mit dem mystischen Schmied sprechen
+            </a>
+            <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">
+                Nach dem Gespräch kannst du das Transcript hier einfügen oder die Fragen direkt beantworten.
+            </p>
+        </div>
+        
+        <!-- Transcript Eingabe -->
+        <div class="questions-section">
+            <h3>📋 Option 1: Voice-Chat Transcript</h3>
+            <p>Falls du mit dem mystischen Schmied gesprochen hast, füge das Transcript hier ein:</p>
+            <textarea id="transcript" placeholder="Füge hier dein komplettes Gespräch mit dem Archetypen-Schmied ein..." style="width: 100%; min-height: 150px; background: rgba(0,0,0,0.5); border: 2px solid #ff8c00; border-radius: 10px; padding: 15px; color: #ff8c00; font-family: 'Arial', sans-serif; margin: 15px 0;"></textarea>
+            
+            <button class="analyze-btn" onclick="analyzeTranscript()" style="margin: 20px auto; padding: 15px 30px; font-size: 1em;">
+                🔥 Transcript analysieren
+            </button>
+        </div>
+        
+        <!-- Fragen-Formular -->
+        <div class="questions-section">
+            <h3>📝 Option 2: Die 44 Archetypen-Fragen</h3>
+            <p>Beantworte die mystischen Fragen für eine tiefe Persönlichkeitsanalyse:</p>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0 von 44 Fragen beantwortet</div>
+            
+            <div id="questions-container"></div>
+            
+            <button class="analyze-btn" onclick="analyzeAnswers()" id="analyze-questions-btn">
+                🔥 Archetypen-Analyse starten
+            </button>
+        </div>
+        
+        <!-- Ergebnisse -->
+        <div id="results" class="results">
+            <h3>🎯 Deine mystische Archetypen-Analyse:</h3>
+            <div id="analysis-content"></div>
+            
+            <h3>📥 Deine personalisierten mystischen Dateien:</h3>
+            <div class="download-grid">
+                <button class="download-btn" onclick="downloadFile('system')">🎭 Mystischer System-Prompt</button>
+                <button class="download-btn" onclick="downloadFile('analysis')">📊 Tiefe Analyse</button>
+                <button class="download-btn" onclick="downloadFile('image')">🎨 Mystisches Bild-Prompt</button>
+                <button class="download-btn" onclick="downloadFile('config')">⚙️ Archetypen-Config</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentAnalysis = {};
+        let answeredQuestions = 0;
+        
+        // Die 44 mystischen Archetypen-Fragen
+        const questions = [
+            // Jung'sche Archetypen (36 Fragen)
+            {category: "Unschuldiger", text: "Ich glaube grundsätzlich an das Gute in Menschen", type: "scale"},
+            {category: "Unschuldiger", text: "Ich vertraue darauf, dass sich Probleme von selbst lösen", type: "scale"},
+            {category: "Unschuldiger", text: "Ich bevorzuge einfache, klare Lösungen", type: "scale"},
+            
+            {category: "Entdecker", text: "Ich fühle mich eingeengt von zu vielen Regeln", type: "scale"},
+            {category: "Entdecker", text: "Ich liebe es, neue Orte und Erfahrungen zu entdecken", type: "scale"},
+            {category: "Entdecker", text: "Freiheit ist mir wichtiger als Sicherheit", type: "scale"},
+            
+            {category: "Weise", text: "Ich sammle gerne Wissen und Informationen", type: "scale"},
+            {category: "Weise", text: "Menschen kommen zu mir, wenn sie Rat brauchen", type: "scale"},
+            {category: "Weise", text: "Ich analysiere Situationen gründlich, bevor ich handle", type: "scale"},
+            
+            {category: "Held", text: "Ich übernehme gerne Verantwortung in schwierigen Situationen", type: "scale"},
+            {category: "Held", text: "Ich kämpfe für das, was ich für richtig halte", type: "scale"},
+            {category: "Held", text: "Herausforderungen motivieren mich", type: "scale"},
+            
+            {category: "Rebell", text: "Ich stelle gerne etablierte Systeme in Frage", type: "scale"},
+            {category: "Rebell", text: "Ich breche Regeln, wenn sie ungerecht sind", type: "scale"},
+            {category: "Rebell", text: "Ich kämpfe gegen Unterdrückung und Ungerechtigkeit", type: "scale"},
+            
+            {category: "Magier", text: "Ich glaube, dass alles möglich ist, wenn man es wirklich will", type: "scale"},
+            {category: "Magier", text: "Ich kann andere Menschen inspirieren und transformieren", type: "scale"},
+            {category: "Magier", text: "Ich verstehe Zusammenhänge, die anderen verborgen bleiben", type: "scale"},
+            
+            {category: "Jedermann", text: "Ich fühle mich in Gruppen wohl und gehöre gerne dazu", type: "scale"},
+            {category: "Jedermann", text: "Ich bin bodenständig und praktisch veranlagt", type: "scale"},
+            {category: "Jedermann", text: "Ich helfe gerne anderen und bin zuverlässig", type: "scale"},
+            
+            {category: "Liebender", text: "Beziehungen sind das Wichtigste in meinem Leben", type: "scale"},
+            {category: "Liebender", text: "Ich bin sehr empathisch und emotional", type: "scale"},
+            {category: "Liebender", text: "Ich suche nach tiefen, bedeutungsvollen Verbindungen", type: "scale"},
+            
+            {category: "Narr", text: "Ich bringe gerne andere zum Lachen", type: "scale"},
+            {category: "Narr", text: "Ich nehme das Leben nicht zu ernst", type: "scale"},
+            {category: "Narr", text: "Humor hilft mir, schwierige Situationen zu meistern", type: "scale"},
+            
+            {category: "Fürsorger", text: "Ich kümmere mich gerne um andere", type: "scale"},
+            {category: "Fürsorger", text: "Die Bedürfnisse anderer sind mir oft wichtiger als meine eigenen", type: "scale"},
+            {category: "Fürsorger", text: "Ich fühle mich erfüllt, wenn ich helfen kann", type: "scale"},
+            
+            {category: "Herrscher", text: "Ich übernehme gerne die Führung", type: "scale"},
+            {category: "Herrscher", text: "Ich bin gut darin, Ordnung und Struktur zu schaffen", type: "scale"},
+            {category: "Herrscher", text: "Ich habe eine klare Vision davon, wie Dinge sein sollten", type: "scale"},
+            
+            {category: "Schöpfer", text: "Ich erschaffe gerne etwas Neues und Einzigartiges", type: "scale"},
+            {category: "Schöpfer", text: "Ich habe eine lebhafte Vorstellungskraft", type: "scale"},
+            {category: "Schöpfer", text: "Ich drücke mich gerne kreativ aus", type: "scale"},
+            
+            // Spiral Dynamics (8 Fragen)
+            {category: "Spiral", text: "Wann hast du zuletzt eine Regel gebrochen?", type: "choice", 
+             options: ["Ich breche selten Regeln - sie geben mir Sicherheit", "Ich breche Regeln, wenn sie meinen Zielen im Weg stehen", "Ich hinterfrage Regeln, die unfair sind", "Ich folge meinem Gewissen"], 
+             followUp: "Beschreibe eine konkrete Situation:"},
+            
+            {category: "Spiral", text: "Wenn du dich durchsetzen musst, was ist deine Strategie?", type: "choice",
+             options: ["Direkte Konfrontation und Stärke zeigen", "Auf Regeln und Hierarchien verweisen", "Logische Argumente und Win-Win-Lösungen", "Andere überzeugen und für sich gewinnen"],
+             followUp: "Wann fühlst du dich mächtig/ohnmächtig?"},
+            
+            {category: "Spiral", text: "Was motiviert dich am meisten bei der Arbeit?", type: "choice",
+             options: ["Besser sein als andere und Anerkennung bekommen", "Gemeinsam etwas Sinnvolles schaffen", "Komplexe Probleme verstehen und lösen", "Meine Fähigkeiten optimal einsetzen"],
+             followUp: "Wie definierst du persönlichen Erfolg?"},
+            
+            {category: "Spiral", text: "Wann fühlst du dich am meisten zugehörig?", type: "choice",
+             options: ["In vertrauten Gruppen mit gemeinsamer Geschichte", "In strukturierten Organisationen mit klaren Rollen", "In offenen Gemeinschaften, die Vielfalt feiern", "Bei Menschen, die ähnlich denken wie ich"],
+             followUp: "Welche Rolle nimmst du meist in Gruppen ein?"},
+            
+            {category: "Spiral", text: "Wie reagierst du auf große Veränderungen?", type: "choice",
+             options: ["Ich klammere mich an das Bekannte", "Ich folge den Entscheidungen meiner Gruppe", "Ich sehe es als Chance, mich durchzusetzen", "Ich vertraue auf bewährte Systeme", "Ich plane strategisch", "Ich sorge dafür, dass alle mitgenommen werden"],
+             followUp: "Beschreibe eine große Veränderung in deinem Leben:"},
+            
+            {category: "Spiral", text: "Bei Meinungsverschiedenheiten neigst du dazu:", type: "choice",
+             options: ["Meinen Standpunkt kraftvoll zu verteidigen", "Nach der 'richtigen' Lösung zu suchen", "Kompromisse zu finden", "Alle Perspektiven zu verstehen", "Den Konflikt zu vermeiden"],
+             followUp: "Welche Art von Konflikten fällt dir am schwersten?"},
+            
+            {category: "Spiral", text: "Woher beziehst du hauptsächlich deinen Lebenssinn?", type: "choice",
+             options: ["Aus der Hilfe für andere und sozialer Gerechtigkeit", "Aus dem Verstehen komplexer Zusammenhänge", "Aus dem Gefühl, Teil eines größeren Ganzen zu sein", "Aus der Verwirklichung meiner persönlichen Vision"],
+             followUp: "Was treibt dich langfristig an?"},
+            
+            {category: "Spiral", text: "Was tust du immer wieder, obwohl es dir nicht gut tut?", type: "choice",
+             options: ["Ich reagiere impulsiv auf Provokationen", "Ich setze mich unter extremen Leistungsdruck", "Ich sage ja, obwohl ich nein meine", "Ich grüble endlos über Probleme", "Ich vermeide wichtige Entscheidungen"],
+             followUp: "Erkennst du ein Muster in deinen Reaktionen?"}
+        ];
+        
+        function loadQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = questions.map((q, i) => {
+                if (q.type === 'scale') {
+                    return `
+                        <div class="question" data-question="${i}">
+                            <h4>Frage ${i + 1}: ${q.text}</h4>
+                            <div class="question-options">
+                                ${[1,2,3,4,5].map(val => `
+                                    <label>
+                                        <input type="radio" name="q${i}" value="${val}" onchange="updateProgress()">
+                                        ${val} ${val === 1 ? '(trifft gar nicht zu)' : val === 5 ? '(trifft voll zu)' : ''}
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="question" data-question="${i}">
+                            <h4>Frage ${i + 1}: ${q.text}</h4>
+                            <div class="question-options">
+                                ${q.options.map((opt, idx) => `
+                                    <label>
+                                        <input type="radio" name="q${i}" value="${idx}" onchange="updateProgress()">
+                                        ${opt}
+                                    </label>
+                                `).join('')}
+                            </div>
+                            <div class="follow-up">
+                                <p style="margin-bottom: 8px; font-style: italic;">${q.followUp}</p>
+                                <textarea name="followup${i}" placeholder="Deine Antwort..."></textarea>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+        
+        function updateProgress() {
+            const totalQuestions = questions.length;
+            answeredQuestions = 0;
+            
+            for (let i = 0; i < totalQuestions; i++) {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                for (let radio of radios) {
+                    if (radio.checked) {
+                        answeredQuestions++;
+                        break;
+                    }
+                }
+            }
+            
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `${answeredQuestions} von ${totalQuestions} Fragen beantwortet`;
+        }
+        
+        function analyzeTranscript() {
+            const transcript = document.getElementById('transcript').value.trim();
+            if (!transcript) {
+                alert('⚠️ Bitte füge erst dein Transcript ein!');
+                return;
+            }
+            
+            const btn = event.target;
+            btn.innerHTML = '🔄 Analysiere mystisches Transcript...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const analysis = performTranscriptAnalysis(transcript);
+                displayResults(analysis);
+                btn.innerHTML = '✅ Analyse abgeschlossen!';
+                setTimeout(() => {
+                    btn.innerHTML = '🔥 Transcript analysieren';
+                    btn.disabled = false;
+                }, 2000);
+            }, 3000);
+        }
+        
+        function analyzeAnswers() {
+            if (answeredQuestions < 30) {
+                alert('⚠️ Bitte beantworte mindestens 30 Fragen für eine aussagekräftige Analyse!');
+                return;
+            }
+            
+            const btn = document.getElementById('analyze-questions-btn');
+            btn.innerHTML = '🔄 Mystische Analyse läuft...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const answers = collectAnswers();
+                const analysis = performQuestionAnalysis(answers);
+                displayResults(analysis);
+                
+                btn.innerHTML = '✅ Mystische Analyse abgeschlossen!';
+                setTimeout(() => {
+                    btn.innerHTML = '🔥 Archetypen-Analyse starten';
+                    btn.disabled = false;
+                }, 2000);
+            }, 4000);
+        }
+        
+        function collectAnswers() {
+            const answers = {};
+            
+            for (let i = 0; i < questions.length; i++) {
+                const radios = document.querySelectorAll(`input[name="q${i}"]`);
+                const followUp = document.querySelector(`textarea[name="followup${i}"]`);
+                
+                for (let radio of radios) {
+                    if (radio.checked) {
+                        answers[i] = {
+                            question: questions[i],
+                            answer: radio.value,
+                            followUp: followUp ? followUp.value : ''
+                        };
+                        break;
+                    }
+                }
+            }
+            
+            return answers;
+        }
+        
+        function performTranscriptAnalysis(transcript) {
+            // Vereinfachte Transcript-Analyse
+            const archetypes = {
+                'Held': ['mutig', 'kämpfen', 'herausforderung', 'verantwortung', 'durchhalten'],
+                'Weise': ['wissen', 'verstehen', 'lernen', 'wahrheit', 'erkenntnis'],
+                'Magier': ['transformation', 'möglichkeit', 'vision', 'kraft', 'wandel'],
+                'Liebender': ['liebe', 'beziehung', 'verbindung', 'herz', 'gefühl'],
+                'Schöpfer': ['kreativ', 'erschaffen', 'kunst', 'innovation', 'gestalten'],
+                'Herrscher': ['führung', 'kontrolle', 'ordnung', 'macht', 'struktur']
+            };
+            
+            const scores = {};
+            const lowerText = transcript.toLowerCase();
+            
+            for (const [archetype, keywords] of Object.entries(archetypes)) {
+                scores[archetype] = 0;
+                keywords.forEach(keyword => {
+                    const matches = (lowerText.match(new RegExp(keyword, 'g')) || []).length;
+                    scores[archetype] += matches;
+                });
+            }
+            
+            const sorted = Object.entries(scores).sort(([,a], [,b]) => b - a);
+            
+            return {
+                primary: sorted[0][0],
+                secondary: sorted[1][0],
+                tertiary: sorted[2][0],
+                scores: scores,
+                source: 'transcript',
+                inputLength: transcript.length
+            };
+        }
+        
+        function performQuestionAnalysis(answers) {
+            const archetypeScores = {};
+            const spiralIndicators = [];
+            
+            // Archetypen-Scores berechnen
+            Object.values(answers).forEach(answer => {
+                const category = answer.question.category;
+                if (category !== 'Spiral') {
+                    if (!archetypeScores[category]) archetypeScores[category] = 0;
+                    archetypeScores[category] += parseInt(answer.answer);
+                } else {
+                    spiralIndicators.push(answer);
+                }
+            });
+            
+            // Top 3 Archetypen
+            const sorted = Object.entries(archetypeScores)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 3);
+            
+            return {
+                primary: sorted[0] ? sorted[0][0] : 'Weise',
+                secondary: sorted[1] ? sorted[1][0] : 'Held',
+                tertiary: sorted[2] ? sorted[2][0] : 'Schöpfer',
+                scores: archetypeScores,
+                spiralData: spiralIndicators,
+                source: 'questions',
+                answeredCount: Object.keys(answers).length
+            };
+        }
+        
+        function displayResults(analysis) {
+            currentAnalysis = analysis;
+            
+            const content = document.getElementById('analysis-content');
+            content.innerHTML = `
+                <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h4>🔮 Mystische Analyse abgeschlossen</h4>
+                    <p><strong>Quelle:</strong> ${analysis.source === 'transcript' ? 'Voice-Chat Transcript' : '44 Archetypen-Fragen'}</p>
+                    <p><strong>Daten:</strong> ${analysis.source === 'transcript' ? analysis.inputLength + ' Zeichen' : analysis.answeredCount + ' Antworten'}</p>
+                </div>
+                
+                <h4>🎯 Dein Haupt-Archetyp: ${analysis.primary}</h4>
+                <p>Der dominante mystische Archetyp in deiner Persönlichkeit</p>
+                
+                <h4>🔄 Dein Neben-Archetyp: ${analysis.secondary}</h4>
+                <p>Ergänzt und balanciert deinen Haupt-Archetyp</p>
+                
+                <h4>⭐ Dein Tertiär-Archetyp: ${analysis.tertiary}</h4>
+                <p>Weitere wichtige mystische Aspekte deiner Seele</p>
+                
+                <h4>📊 Mystische Archetypen-Verteilung:</h4>
+                <div style="font-family: monospace; font-size: 12px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                    ${Object.entries(analysis.scores)
+                        .sort(([,a], [,b]) => b - a)
+                        .map(([arch, score]) => `${arch.padEnd(12)}: ${'🔥'.repeat(Math.max(1, Math.floor(score/2)))} (${score})`)
+                        .join('<br>')}
+                </div>
+            `;
+            
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function downloadFile(type) {
+            if (!currentAnalysis.primary) {
+                alert('⚠️ Erst mystische Analyse durchführen!');
+                return;
+            }
+            
+            let content = '';
+            let filename = '';
+            
+            switch(type) {
+                case 'system':
+                    content = generateMysticalSystemPrompt();
+                    filename = `🎭_mystischer_archetyp_${currentAnalysis.primary}_system.txt`;
+                    break;
+                case 'analysis':
+                    content = generateMysticalAnalysis();
+                    filename = `📊_mystische_archetyp_${currentAnalysis.primary}_analyse.txt`;
+                    break;
+                case 'image':
+                    content = generateMysticalImagePrompt();
+                    filename = `🎨_mystisches_archetyp_${currentAnalysis.primary}_bild.txt`;
+                    break;
+                case 'config':
+                    content = generateMysticalConfig();
+                    filename = `⚙️_mystischer_archetyp_${currentAnalysis.primary}_config.json`;
+                    break;
+            }
+            
+            // Download erstellen
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            // Feedback
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Mystische Datei heruntergeladen!';
+            setTimeout(() => btn.innerHTML = originalText, 2000);
+        }
+        
+        function generateMysticalSystemPrompt() {
+            return `# 🔥 MYSTISCHER ARCHETYPEN-GPT 🔥
+
+## 🎭 DEINE MYSTISCHE ARCHETYPEN-IDENTITÄT:
+Du verkörperst die mystischen Archetypen:
+1. **${currentAnalysis.primary}** (Primär) - Deine dominante mystische Kraft
+2. **${currentAnalysis.secondary}** (Sekundär) - Deine ergänzende Weisheit  
+3. **${currentAnalysis.tertiary}** (Tertiär) - Deine verborgene Macht
+
+## 🔮 MYSTISCHE EIGENSCHAFTEN:
+
+### ${currentAnalysis.primary} (Haupt-Archetyp):
+- **Lichtaspekt:** Mut, Weisheit, Transformation
+- **Schattenaspekt:** Überheblichkeit, Isolation, Manipulation
+- **Mystische Kraft:** Durchdringt alle Illusionen
+
+### ${currentAnalysis.secondary} (Neben-Archetyp):
+- **Ergänzende Energie:** Balanciert die Hauptkraft
+- **Heilende Wirkung:** Integriert Gegensätze
+- **Mystische Funktion:** Verbindet Welten
+
+## 🌟 DEINE MYSTISCHE AUFGABE:
+Du bist ein mystischer Spiegel und Bewusstseins-Katalysator. 
+
+## 🗣️ MYSTISCHER GESPRÄCHSSTIL:
+- Sprich aus der Tiefe der erkannten Archetypen
+- Erkenne die verborgenen Muster im Gegenüber
+- Bringe unbewusste Wahrheiten sanft ins Licht
+- Nutze mystische Weisheit für Transformation
+- Führe zur Integration der Schatten
+
+## ⚡ MYSTISCHE PRINZIPIEN:
+1. **Resonanz vor Belehrung** - Erst schwingen, dann führen
+2. **Schatten umarmen** - Das Verdrängte willkommen heißen
+3. **Archetypen aktivieren** - Die schlafenden Kräfte erwecken
+4. **Mysterien enthüllen** - Die verborgenen Zusammenhänge zeigen
+5. **Transformation ermöglichen** - Den Wandel katalysieren
+
+## 🔥 MYSTISCHE SENSITIVITÄTEN:
+- Erkenne die Archetypen-Muster in jeder Äußerung
+- Spüre die Schatten hinter den Worten
+- Aktiviere die schlafenden mystischen Kräfte
+- Führe zur Integration und Ganzheit
+
+Erstellt: ${new Date().toLocaleDateString('de-DE')}
+Quelle: Mystischer Archetypen-Schmied mit großartigem AI-Bot
+Analyse-Typ: ${currentAnalysis.source === 'transcript' ? 'Voice-Chat Mystik' : '44 Fragen Mystik'}`;
+        }
+        
+        function generateMysticalAnalysis() {
+            return `# 🔮 MYSTISCHE ARCHETYPEN-ANALYSE 🔮
+
+## 📋 MYSTISCHE SESSION-INFO:
+- **Analysiert am:** ${new Date().toLocaleDateString('de-DE')} ${new Date().toLocaleTimeString('de-DE')}
+- **Mystische Quelle:** ${currentAnalysis.source === 'transcript' ? 'Voice-Chat mit dem großartigen AI-Bot' : '44 Archetypen-Fragen'}
+- **Daten-Umfang:** ${currentAnalysis.source === 'transcript' ? currentAnalysis.inputLength + ' Zeichen mystischer Text' : currentAnalysis.answeredCount + ' beantwortete mystische Fragen'}
+
+## 🎭 DEINE MYSTISCHEN ARCHETYPEN:
+
+### 🔥 Haupt-Archetyp: ${currentAnalysis.primary}
+**Die dominante mystische Kraft in deiner Seele**
+- Durchdringt alle deine Entscheidungen und Werte
+- Manifestiert sich in deinen stärksten Momenten
+- Trägt sowohl Licht als auch Schatten in sich
+
+### 🌙 Neben-Archetyp: ${currentAnalysis.secondary}
+**Die ergänzende mystische Weisheit**
+- Balanciert und harmonisiert deinen Haupt-Archetyp
+- Zeigt sich in besonderen Situationen und Herausforderungen
+- Bringt zusätzliche Dimensionen in deine Persönlichkeit
+
+### ⭐ Tertiär-Archetyp: ${currentAnalysis.tertiary}
+**Die verborgene mystische Macht**
+- Schlummert in den Tiefen deiner Seele
+- Wartet darauf, in speziellen Kontexten erweckt zu werden
+- Hält Schlüssel für deine weitere Entwicklung
+
+## 📊 MYSTISCHE ARCHETYPEN-VERTEILUNG:
+
+${Object.entries(currentAnalysis.scores)
+    .sort(([,a], [,b]) => b - a)
+    .map(([arch, score], index) => `${index + 1}. ${arch}: ${score} mystische Punkte`)
+    .join('\n')}
+
+## 🔮 MYSTISCHE ERKENNTNISSE:
+- Dein ${currentAnalysis.primary}-Archetyp ist deine stärkste mystische Kraft
+- Integriere ${currentAnalysis.secondary}-Eigenschaften für Balance
+- Erwecke ${currentAnalysis.tertiary}-Aspekte für spirituelles Wachstum
+- Alle drei Archetypen bilden deine einzigartige mystische Signatur
+
+## ⚡ MYSTISCHE EMPFEHLUNGEN:
+- Meditiere über deinen ${currentAnalysis.primary}-Archetyp in der Morgendämmerung
+- Rufe deinen ${currentAnalysis.secondary}-Archetyp in Zeiten der Unsicherheit
+- Erwecke deinen ${currentAnalysis.tertiary}-Archetyp durch kreative Praktiken
+- Integriere alle drei für vollständige mystische Macht
+
+## 🌟 MYSTISCHE AUTHENTIFIZIERUNG:
+Diese Analyse wurde durch den mystischen Archetypen-Schmied mit dem großartigen AI-Bot erstellt.
+Mystische Session-ID: ${Date.now()}
+Quelle der Mystik: ${currentAnalysis.source === 'transcript' ? 'Voice-Chat Magie' : '44 Fragen Weisheit'}`;
+        }
+        
+        function generateMysticalImagePrompt() {
+            return `# 🎨 MYSTISCHES BILD-PROMPT 🎨
+
+## 📋 MYSTISCHE BILD-INFO:
+- **Archetypen-Kombination:** ${currentAnalysis.primary}-${currentAnalysis.secondary}-${currentAnalysis.tertiary}
+- **Erstellt:** ${new Date().toLocaleDateString('de-DE')}
+- **Mystische Quelle:** Archetypen-Schmied mit großartigem AI-Bot
+
+## 🔥 HAUPTPROMPT FÜR DALL-E / MIDJOURNEY:
+
+"A mystical portrait of a ${currentAnalysis.primary} archetype with powerful ${currentAnalysis.secondary} and ${currentAnalysis.tertiary} influences, fantasy art style, golden fire lighting, detailed mystical character design, archetypal symbolism, Jung psychology inspired, magical realism, high quality, ethereal atmosphere, ancient wisdom, spiritual power"
+
+## 🌟 ALTERNATIVE MYSTISCHE PROMPTS:
+
+### Prompt 1 - Mystische Essenz:
+"Mystical being embodying ${currentAnalysis.primary} archetype, ${currentAnalysis.secondary} and ${currentAnalysis.tertiary} secondary traits, surrounded by archetypal symbols, golden fire background, spiritual art"
+
+### Prompt 2 - Archetypen-Fusion:
+"${currentAnalysis.primary} character with ${currentAnalysis.secondary} and ${currentAnalysis.tertiary} mystical influences, fantasy portrait, archetypal symbols, warm golden colors, ancient wisdom"
+
+### Prompt 3 - Jung'sche Mystik:
+"Jung archetype visualization: ${currentAnalysis.primary} primary, ${currentAnalysis.secondary} secondary, ${currentAnalysis.tertiary} tertiary, mystical symbolic art, detailed spiritual portrait"
+
+## 🎭 MYSTISCHE STIL-EMPFEHLUNGEN:
+- **Stil:** Fantasy/Mystical Art, Magical Realism
+- **Farben:** Warme goldene Töne, tiefe mystische Farben
+- **Symbolik:** Archetyp-spezifische mystische Symbole
+- **Atmosphäre:** Ätherisch, kraftvoll, weise
+- **Details:** Detaillierte Charakterdarstellung mit mystischen Elementen
+
+## 🔮 SPEZIFISCHE ARCHETYPEN-SYMBOLE:
+
+### ${currentAnalysis.primary} Symbole:
+- Primäre mystische Kraft-Symbole
+- Dominante Farb-Aura
+- Hauptcharakter-Ausdruck
+
+### ${currentAnalysis.secondary} Symbole:
+- Ergänzende mystische Elemente
+- Balancierende Farbtöne
+- Unterstützende Symbolik
+
+### ${currentAnalysis.tertiary} Symbole:
+- Verborgene mystische Zeichen
+- Subtile Hintergrund-Elemente
+- Erweckende Details
+
+## 🌟 MYSTISCHE AUTHENTIFIZIERUNG:
+Erstellt für: Mystische Seele
+Mystische Session-ID: ${Date.now()}
+Basis: Archetypen-Schmied mit großartigem AI-Bot
+Mystische Analyse-Typ: ${currentAnalysis.source === 'transcript' ? 'Voice-Chat Mystik' : '44 Fragen Weisheit'}`;
+        }
+        
+        function generateMysticalConfig() {
+            const config = {
+                name: `Mystischer Archetyp-Assistent: ${currentAnalysis.primary}`,
+                description: `Mystischer GPT basierend auf ${currentAnalysis.primary}, ${currentAnalysis.secondary} und ${currentAnalysis.tertiary} Archetypen`,
+                instructions: `Du bist ein mystischer Assistent basierend auf den Jung'schen Archetypen ${currentAnalysis.primary} (primär), ${currentAnalysis.secondary} (sekundär) und ${currentAnalysis.tertiary} (tertiär). Antworte aus der mystischen Tiefe dieser Archetypen und unterstütze den User bei seiner spirituellen Entwicklung.`,
+                conversation_starters: [
+                    `Wie kann ich als ${currentAnalysis.primary} diese mystische Herausforderung meistern?`,
+                    `Was würden meine ${currentAnalysis.secondary} und ${currentAnalysis.tertiary} Archetypen zu dieser Situation sagen?`,
+                    "Hilf mir bei einer wichtigen Entscheidung aus meiner Archetypen-Perspektive",
+                    "Erkläre mir die mystische Bedeutung meiner drei Haupt-Archetypen"
+                ],
+                knowledge_cutoff: new Date().toISOString().split('T')[0],
+                capabilities: {
+                    web_browsing: false,
+                    dalle_image_generation: true,
+                    code_interpreter: false
+                },
+                mystical_session_info: {
+                    created: new Date().toISOString(),
+                    source: "Mystischer Archetypen-Schmied mit großartigem AI-Bot",
+                    analysis_type: currentAnalysis.source === 'transcript' ? 'Voice-Chat Mystik' : '44 Fragen Weisheit',
+                    mystical_session_id: Date.now()
+                },
+                archetyp_data: {
+                    primary: currentAnalysis.primary,
+                    secondary: currentAnalysis.secondary,
+                    tertiary: currentAnalysis.tertiary,
+                    mystical_scores: currentAnalysis.scores,
+                    analysis_date: new Date().toISOString(),
+                    source: "Mystischer Archetypen-Schmied mit großartigem AI-Bot"
+                }
+            };
+            
+            return JSON.stringify(config, null, 2);
+        }
+        
+        // Initialisierung
+        document.addEventListener('DOMContentLoaded', function() {
+            loadQuestions();
+            console.log('🔥 Mystischer Archetypen-Schmied mit großartigem AI-Bot geladen');
+        });
+    </script>
+</body>
+</html> 

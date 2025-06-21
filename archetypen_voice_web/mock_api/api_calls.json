@@ -1,0 +1,555 @@
+[
+  {
+    "url": "https://www.apple.com/api-www/global-elements/global-header/v1/assets/globalheader.css",
+    "method": "GET",
+    "headers": {
+      "accept": "text/css,*/*;q=0.1",
+      "cookie": "geo=DE",
+      "referer": "https://www.apple.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/api-www/global-elements/global-header/v1/assets/globalheader.umd.js",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE",
+      "referer": "https://www.apple.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_semibold.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_regular.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_semibold.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_regular.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_medium.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_medium.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_semibold.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_regular.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/ac/localeswitcher/4/de_DE/content/localeswitcher.json",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "referer": "https://www.apple.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_semibold.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_regular.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_medium.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_medium.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_semibold.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_regular.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_semibold.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_regular.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_medium.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_medium.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_regular.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_semibold.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_bold.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_regular.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_semibold.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_medium.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_bold.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_regular.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_semibold.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_medium.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_bold.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_medium.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_bold.woff2",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://securemvt.apple.com/rest/v1/delivery?client=apple&sessionId=a86e7878175d43e3b822ead8256027ce&version=2.3.2",
+    "method": "POST",
+    "headers": {
+      "accept": "*/*",
+      "content-type": "text/plain",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": "{\"requestId\":\"a7847cb6efa64e40bb422d5dee3a53eb\",\"context\":{\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36\",\"timeOffsetInMinutes\":120,\"channel\":\"web\",\"screen\":{\"width\":1280,\"height\":720,\"orientation\":\"landscape\",\"colorDepth\":24,\"pixelRatio\":1},\"window\":{\"width\":1280,\"height\":720},\"browser\":{\"host\":\"www.apple.com\",\"webGLRenderer\":\"ANGLE (Apple, Apple M1, OpenGL 4.1)\"},\"address\":{\"url\":\"https://www.apple.com/\",\"referringUrl\":\"\"}},\"experienceCloud\":{\"analytics\":{\"logging\":\"server_side\"}},\"execute\":{\"pageLoad\":{\"parameters\":{\"as_tex\":\"\"}}},\"prefetch\":{\"views\":[{\"parameters\":{\"as_tex\":\"\"}}]}}"
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_bold.woff",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  },
+  {
+    "url": "https://www.apple.com/wss/fonts/SF-Pro-Icons/v3/sf-pro-icons_bold.ttf",
+    "method": "GET",
+    "headers": {
+      "accept": "*/*",
+      "cookie": "geo=DE; at_check=true; mbox=session#a86e7878175d43e3b822ead8256027ce#1750361421; s_fid=5B8B35E6ED4C3B55-2E39B92CF9106226; s_cc=true; mk_epub=%7B%22btuid%22%3A%22p3jhid%22%2C%22prop57%22%3A%22www.us.homepage%22%7D; shld_bt_m=g34O85syDdzV6RPn0DmKxA|1750366760|A_4pC5n41pMB4L7itFftAg|VDMq5DVGEfftcCN8TVI_U1njfPc; dssid2=f92a1dfa-0ed3-4895-952c-4ac9d18a53c3; dssf=1; as_pcts=s0fwtaZc19Vpk0Oys+V6:jPs2ppsBBdbaDGto0xaiOi0jPF3t3SrnAl6Jo6doZrhy4JGSlwE109xL5ony1cCfqeOVelktrUcWf4V:UYfTOW_ZtGJ2Aq3POqTo64y3iG5DSYX9nQqP1V-LeaAUdGoW7; as_dc=ucp3",
+      "origin": "https://www.apple.com",
+      "referer": "https://www.apple.com/wss/fonts?families=SF+Pro,v3|SF+Pro+Icons,v3",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "sec-ch-ua": "\"Chromium\";v=\"136\", \"HeadlessChrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    },
+    "post_data": null
+  }
+]

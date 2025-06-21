@@ -1,0 +1,51 @@
+{
+  "name": "multi-ai-desktop",
+  "version": "0.1.0",
+  "description": "Multi-Agent KI Desktop App - Lokaler KI-Arbeitsplatz für GPT, Claude, Gemini und mehr",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "test": "jest",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": ["ai", "multi-agent", "gpt", "claude", "gemini", "desktop"],
+  "author": "Benjamin Poersch",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.16.1",
+    "@google/generative-ai": "^0.1.3",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "electron-store": "^8.1.0",
+    "express": "^4.18.2",
+    "openai": "^4.24.1",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1",
+    "ws": "^8.16.0"
+  },
+  "build": {
+    "appId": "com.multiagent.desktop",
+    "productName": "Multi-AI Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+} 

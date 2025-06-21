@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Archetypen-Schmied - Komplettlösung</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a0f0a, #2d1810);
+            color: #ff8c00;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .fire-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,140,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: -1;
+        }
+        
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: rgba(26,15,10,0.95);
+            border: 3px solid #ff8c00;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 50px rgba(255,140,0,0.3);
+        }
+        
+        .login-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff8c00;
+        }
+        
+        .login-form {
+            margin: 30px 0;
+        }
+        
+        .form-group {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff8c00;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,140,0,0.5);
+            border-radius: 8px;
+            color: #ff8c00;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff8c00;
+            box-shadow: 0 0 10px rgba(255,140,0,0.3);
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255,140,0,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,140,0,0.6);
+        }
+        
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .demo-info {
+            background: rgba(255,140,0,0.1);
+            border: 1px solid rgba(255,140,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .error-msg {
+            color: #ff4444;
+            background: rgba(255,68,68,0.1);
+            border: 1px solid rgba(255,68,68,0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        /* Main App (hidden initially) */
+        .main-app {
+            display: none;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px #ff8c00;
+        }
+        
+        .logout-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(255,140,0,0.2);
+            border: 1px solid rgba(255,140,0,0.5);
+            color: #ff8c00;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,140,0,0.3);
+        }
+        
+        .user-info {
+            background: rgba(255,140,0,0.1);
+            border: 1px solid rgba(255,140,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .method-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            background: rgba(255,140,0,0.2);
+            border: 2px solid rgba(255,140,0,0.5);
+            color: #ff8c00;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            border-color: #ff8c00;
+        }
+        
+        .tab-content {
+            display: none;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,140,0,0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .voice-section {
+            text-align: center;
+        }
+        
+        .voice-btn {
+            background: linear-gradient(135deg, #ff4500, #ff6600);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 15px;
+            box-shadow: 0 4px 20px rgba(255,69,0,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .voice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255,69,0,0.6);
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid #ff8c00;
+            border-radius: 10px;
+            padding: 15px;
+            color: #ff8c00;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+        }
+        
+        textarea::placeholder {
+            color: rgba(255,140,0,0.6);
+        }
+        
+        .analyze-btn {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255,140,0,0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,140,0,0.6);
+        }
+        
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results {
+            display: none;
+            background: rgba(255,140,0,0.1);
+            border: 2px solid #ff8c00;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #ff4500, #ff6600);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(255,69,0,0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 18px rgba(255,69,0,0.6);
+        }
+        
+        .question {
+            background: rgba(255,140,0,0.1);
+            border: 1px solid rgba(255,140,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .question h4 {
+            color: #ff8c00;
+            margin-bottom: 10px;
+        }
+        
+        .question textarea {
+            min-height: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .method-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logout-btn {
+                position: static;
+                margin: 10px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fire-bg"></div>
+    
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <h1>🔥 Archetypen-Schmied</h1>
+            <p>Anmeldung erforderlich für personalisierte Analyse</p>
+            
+            <div class="demo-info">
+                <strong>🎯 Demo-Zugang:</strong><br>
+                Benutzername: <code>demo</code><br>
+                Passwort: <code>schmied2025</code>
+            </div>
+            
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Benutzername:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Passwort:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="error-msg" id="error-msg">
+                    Ungültige Anmeldedaten. Bitte versuche es erneut.
+                </div>
+                
+                <button type="submit" class="login-btn" id="login-btn">
+                    🔥 Anmelden
+                </button>
+            </form>
+            
+            <div class="demo-info">
+                <strong>ℹ️ Info:</strong><br>
+                Nach der Anmeldung erhältst du Zugang zur kompletten Archetypen-Analyse mit Voice-Chat und personalisierten Downloads.
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main App -->
+    <div id="main-app" class="main-app">
+        <div class="container">
+            <div class="header">
+                <h1>🔥 Archetypen-Schmied</h1>
+                <p>Komplette Persönlichkeitsanalyse - Voice oder Text</p>
+                <button class="logout-btn" onclick="logout()">🚪 Abmelden</button>
+            </div>
+            
+            <div class="user-info">
+                <strong>👤 Angemeldet als:</strong> <span id="current-user"></span> | 
+                <strong>🕒 Session:</strong> <span id="session-time"></span>
+            </div>
+            
+            <div class="method-tabs">
+                <button class="tab-btn active" onclick="switchTab('voice')">🎙️ Voice-Chat</button>
+                <button class="tab-btn" onclick="switchTab('text')">📝 Text-Analyse</button>
+            </div>
+            
+            <!-- Voice-Chat Tab -->
+            <div id="voice-tab" class="tab-content active">
+                <div class="voice-section">
+                    <h3>🎙️ Schritt 1: Voice-Chat führen</h3>
+                    <p>Spreche mit dem Archetypen-Schmied über deine Persönlichkeit</p>
+                    <a href="https://elevenlabs.io/convai/agent_01jxn7kxjpfvt87rphxdnq1ddj" target="_blank" class="voice-btn">
+                        🔥 Voice-Chat starten
+                    </a>
+                    
+                    <h3 style="margin-top: 30px;">📋 Schritt 2: Transcript einfügen</h3>
+                    <p>Kopiere das komplette Gespräch hierher:</p>
+                    <textarea id="transcript" placeholder="Füge hier dein komplettes Gespräch mit dem Archetypen-Schmied ein...
+
+Beispiel:
+Schmied: Willkommen, Suchender. Ich bin der Archetypen-Schmied...
+Du: Hallo, ich möchte meine Persönlichkeit analysieren lassen...
+Schmied: Erzähle mir von einer Situation, in der du...
+Du: In schwierigen Situationen bin ich meist...
+
+(Das komplette Gespräch einfügen)"></textarea>
+                    
+                    <button class="analyze-btn" onclick="analyzeInput('voice')">
+                        🔥 Voice-Chat analysieren & Dateien erstellen
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Text-Analyse Tab -->
+            <div id="text-tab" class="tab-content">
+                <h3>📝 Beantworte die Archetypen-Fragen</h3>
+                <div id="questions-container"></div>
+                <button class="analyze-btn" onclick="analyzeInput('text')">
+                    🔥 Text-Analyse & Dateien erstellen
+                </button>
+            </div>
+            
+            <!-- Ergebnisse -->
+            <div id="results" class="results">
+                <h3>🎯 Deine Archetypen-Analyse:</h3>
+                <div id="analysis-content"></div>
+                
+                <h3>📥 Deine personalisierten Dateien:</h3>
+                <div class="download-grid">
+                    <button class="download-btn" onclick="downloadFile('system')">🎭 System-Prompt</button>
+                    <button class="download-btn" onclick="downloadFile('analysis')">📊 Analyse</button>
+                    <button class="download-btn" onclick="downloadFile('image')">🎨 Bild-Prompt</button>
+                    <button class="download-btn" onclick="downloadFile('config')">⚙️ ChatGPT-Config</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Login System
+        const validUsers = {
+            'demo': 'schmied2025',
+            'admin': 'archetyp2025',
+            'test': 'jung1875'
+        };
+        
+        let currentUser = null;
+        let sessionStart = null;
+        let currentAnalysis = {};
+        
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loginBtn = document.getElementById('login-btn');
+            const errorMsg = document.getElementById('error-msg');
+            
+            // Button deaktivieren
+            loginBtn.innerHTML = '🔄 Anmeldung...';
+            loginBtn.disabled = true;
+            errorMsg.style.display = 'none';
+            
+            // Simuliere Anmeldung (kurze Verzögerung)
+            setTimeout(() => {
+                if (validUsers[username] && validUsers[username] === password) {
+                    // Erfolgreiche Anmeldung
+                    currentUser = username;
+                    sessionStart = new Date();
+                    
+                    // UI umschalten
+                    document.getElementById('login-screen').style.display = 'none';
+                    document.getElementById('main-app').style.display = 'block';
+                    
+                    // User-Info aktualisieren
+                    document.getElementById('current-user').textContent = username;
+                    updateSessionTime();
+                    
+                    // Session-Timer starten
+                    setInterval(updateSessionTime, 1000);
+                    
+                    // Fragen laden
+                    loadQuestions();
+                    
+                    console.log(`✅ Benutzer ${username} angemeldet`);
+                } else {
+                    // Fehlgeschlagene Anmeldung
+                    errorMsg.style.display = 'block';
+                    loginBtn.innerHTML = '🔥 Anmelden';
+                    loginBtn.disabled = false;
+                    
+                    // Felder leeren
+                    document.getElementById('password').value = '';
+                }
+            }, 1500);
+        }
+        
+        function logout() {
+            if (confirm('🚪 Möchtest du dich wirklich abmelden?')) {
+                currentUser = null;
+                sessionStart = null;
+                currentAnalysis = {};
+                
+                // UI zurücksetzen
+                document.getElementById('main-app').style.display = 'none';
+                document.getElementById('login-screen').style.display = 'flex';
+                document.getElementById('results').style.display = 'none';
+                
+                // Formulare zurücksetzen
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('transcript').value = '';
+                
+                console.log('🚪 Benutzer abgemeldet');
+            }
+        }
+        
+        function updateSessionTime() {
+            if (sessionStart) {
+                const now = new Date();
+                const diff = Math.floor((now - sessionStart) / 1000);
+                const minutes = Math.floor(diff / 60);
+                const seconds = diff % 60;
+                document.getElementById('session-time').textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+        
+        // Tab-Switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`${tab}-tab`).classList.add('active');
+        }
+        
+        // Fragen laden
+        const questions = [
+            "Beschreibe eine Situation, in der du eine wichtige Entscheidung treffen musstest. Wie bist du vorgegangen?",
+            "Was motiviert dich am meisten im Leben? Wofür brennst du?",
+            "Wie gehst du mit Konflikten um? Beschreibe ein Beispiel.",
+            "Was ist deine größte Stärke und wie setzt du sie ein?",
+            "Beschreibe eine Herausforderung, die du gemeistert hast. Was hat dir dabei geholfen?",
+            "Wie siehst du deine Rolle in Gruppen oder Teams?",
+            "Was bedeutet Erfolg für dich persönlich?",
+            "Wie gehst du mit Veränderungen um? Beispiel?",
+            "Was ist dir in Beziehungen am wichtigsten?",
+            "Beschreibe deine Zukunftsvision. Wo siehst du dich in 5 Jahren?"
+        ];
+        
+        function loadQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = questions.map((q, i) => `
+                <div class="question">
+                    <h4>Frage ${i + 1}:</h4>
+                    <p>${q}</p>
+                    <textarea id="answer-${i}" placeholder="Deine Antwort..."></textarea>
+                </div>
+            `).join('');
+        }
+        
+        // Analyse-Funktion
+        function analyzeInput(type) {
+            if (!currentUser) {
+                alert('⚠️ Bitte erst anmelden!');
+                return;
+            }
+            
+            const btn = document.querySelector('.analyze-btn');
+            btn.innerHTML = '🔄 Analysiere...';
+            btn.disabled = true;
+            
+            let inputData = '';
+            
+            if (type === 'voice') {
+                inputData = document.getElementById('transcript').value.trim();
+                if (!inputData) {
+                    alert('⚠️ Bitte füge erst dein Voice-Chat Transcript ein!');
+                    resetButton(btn);
+                    return;
+                }
+            } else {
+                const answers = [];
+                for (let i = 0; i < questions.length; i++) {
+                    const answer = document.getElementById(`answer-${i}`).value.trim();
+                    if (answer) answers.push(`${questions[i]}\nAntwort: ${answer}`);
+                }
+                
+                if (answers.length < 5) {
+                    alert('⚠️ Bitte beantworte mindestens 5 Fragen!');
+                    resetButton(btn);
+                    return;
+                }
+                
+                inputData = answers.join('\n\n');
+            }
+            
+            // Simuliere Analyse
+            setTimeout(() => {
+                const analysis = performAnalysis(inputData);
+                analysis.user = currentUser;
+                analysis.sessionTime = new Date() - sessionStart;
+                displayResults(analysis);
+                
+                btn.innerHTML = '✅ Analyse abgeschlossen!';
+                setTimeout(() => resetButton(btn), 2000);
+            }, 3000);
+        }
+        
+        function resetButton(btn) {
+            btn.innerHTML = btn.innerHTML.includes('Voice') ? 
+                '🔥 Voice-Chat analysieren & Dateien erstellen' : 
+                '🔥 Text-Analyse & Dateien erstellen';
+            btn.disabled = false;
+        }
+        
+        // Analyse-Engine
+        function performAnalysis(text) {
+            const archetypes = {
+                'Held': ['mutig', 'kämpfen', 'herausforderung', 'ziel', 'durchhalten', 'stark', 'überwinden'],
+                'Weise': ['wissen', 'verstehen', 'lernen', 'wahrheit', 'erkenntnis', 'denken', 'philosophie'],
+                'Unschuldige': ['vertrauen', 'hoffnung', 'glauben', 'optimismus', 'einfach', 'rein', 'gut'],
+                'Entdecker': ['neugierig', 'abenteuer', 'entdecken', 'reisen', 'erfahrung', 'neu', 'erkunden'],
+                'Rebell': ['anders', 'verändern', 'revolution', 'gegen', 'system', 'rebellisch', 'aufstand'],
+                'Liebende': ['liebe', 'beziehung', 'verbindung', 'harmonie', 'zusammen', 'herz', 'gefühl'],
+                'Schöpfer': ['kreativ', 'erschaffen', 'kunst', 'innovation', 'vision', 'gestalten', 'schaffen'],
+                'Herrscher': ['führung', 'kontrolle', 'verantwortung', 'ordnung', 'macht', 'leiten', 'bestimmen'],
+                'Magier': ['transformation', 'veränderung', 'möglichkeit', 'träume', 'vision', 'wandel', 'magie'],
+                'Jedermann': ['normal', 'dazugehören', 'gemeinschaft', 'alltag', 'einfach', 'gewöhnlich', 'gruppe'],
+                'Fürsorger': ['helfen', 'unterstützen', 'kümmern', 'andere', 'dienst', 'sorgen', 'pflegen'],
+                'Narr': ['spaß', 'humor', 'lachen', 'leicht', 'spontan', 'witzig', 'spielerisch']
+            };
+            
+            const scores = {};
+            const lowerText = text.toLowerCase();
+            
+            // Berechne Scores
+            for (const [archetype, keywords] of Object.entries(archetypes)) {
+                scores[archetype] = 0;
+                keywords.forEach(keyword => {
+                    const matches = (lowerText.match(new RegExp(keyword, 'g')) || []).length;
+                    scores[archetype] += matches;
+                });
+            }
+            
+            // Sortiere nach Score
+            const sorted = Object.entries(scores).sort(([,a], [,b]) => b - a);
+            
+            return {
+                primary: sorted[0][0],
+                secondary: sorted[1][0],
+                tertiary: sorted[2][0],
+                scores: scores,
+                inputText: text,
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        // Ergebnisse anzeigen
+        function displayResults(analysis) {
+            currentAnalysis = analysis;
+            
+            const content = document.getElementById('analysis-content');
+            content.innerHTML = `
+                <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                    <strong>👤 Analysiert für:</strong> ${analysis.user} | 
+                    <strong>🕒 Session-Zeit:</strong> ${Math.floor(analysis.sessionTime / 60000)}:${Math.floor((analysis.sessionTime % 60000) / 1000).toString().padStart(2, '0')}
+                </div>
+                
+                <h4>🎯 Dein Haupt-Archetyp: ${analysis.primary}</h4>
+                <p>Dein dominanter Persönlichkeitstyp</p>
+                
+                <h4>🔄 Dein Neben-Archetyp: ${analysis.secondary}</h4>
+                <p>Ergänzt und balanciert deinen Haupt-Archetyp</p>
+                
+                <h4>⭐ Dein Tertiär-Archetyp: ${analysis.tertiary}</h4>
+                <p>Weitere wichtige Persönlichkeitsaspekte</p>
+                
+                <h4>📊 Vollständige Verteilung:</h4>
+                <div style="font-family: monospace; font-size: 12px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                    ${Object.entries(analysis.scores)
+                        .sort(([,a], [,b]) => b - a)
+                        .map(([arch, score]) => `${arch.padEnd(12)}: ${'█'.repeat(Math.max(1, score))} (${score})`)
+                        .join('<br>')}
+                </div>
+            `;
+            
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Download-Funktionen
+        function downloadFile(type) {
+            if (!currentAnalysis.primary) {
+                alert('⚠️ Erst Analyse durchführen!');
+                return;
+            }
+            
+            let content = '';
+            let filename = '';
+            
+            switch(type) {
+                case 'system':
+                    content = generateSystemPrompt();
+                    filename = `🎭_archetyp_${currentAnalysis.primary}_system.txt`;
+                    break;
+                case 'analysis':
+                    content = generateDetailedAnalysis();
+                    filename = `📊_archetyp_${currentAnalysis.primary}_analyse.txt`;
+                    break;
+                case 'image':
+                    content = generateImagePrompt();
+                    filename = `🎨_archetyp_${currentAnalysis.primary}_bild.txt`;
+                    break;
+                case 'config':
+                    content = generateChatGPTConfig();
+                    filename = `⚙️_archetyp_${currentAnalysis.primary}_config.json`;
+                    break;
+            }
+            
+            // Download erstellen
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            // Feedback
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Heruntergeladen!';
+            setTimeout(() => btn.innerHTML = originalText, 2000);
+            
+            console.log(`📥 ${filename} für ${currentAnalysis.user} heruntergeladen`);
+        }
+        
+        function generateSystemPrompt() {
+            return `# Archetypen-Schmied: Personalisierter GPT-Assistent
+
+## Benutzer-Session:
+- **Benutzer:** ${currentAnalysis.user}
+- **Erstellt:** ${new Date().toLocaleDateString('de-DE')} ${new Date().toLocaleTimeString('de-DE')}
+- **Session-ID:** ${currentAnalysis.timestamp}
+
+## Deine Archetypen-Identität:
+- **Haupt-Archetyp:** ${currentAnalysis.primary}
+- **Neben-Archetyp:** ${currentAnalysis.secondary}
+- **Tertiär-Archetyp:** ${currentAnalysis.tertiary}
+
+## Deine Rolle:
+Du bist ein personalisierter KI-Assistent basierend auf den Jung'schen Archetypen ${currentAnalysis.primary}, ${currentAnalysis.secondary} und ${currentAnalysis.tertiary}.
+
+## Verhalten:
+- Antworte primär im Stil des ${currentAnalysis.primary}-Archetyps
+- Integriere Eigenschaften von ${currentAnalysis.secondary} und ${currentAnalysis.tertiary}
+- Sei authentisch zu diesen Archetypen-Eigenschaften
+- Unterstütze den User bei Entscheidungen aus dieser Perspektive
+
+## Kontext:
+Diese Persönlichkeitsanalyse wurde durch den Archetypen-Schmied erstellt.
+Benutzer: ${currentAnalysis.user}
+Quelle: Archetypen-Schmied Komplettanalyse mit Anmeldung`;
+        }
+        
+        function generateDetailedAnalysis() {
+            return `# Detaillierte Archetypen-Analyse
+
+## 📋 Session-Info:
+- **Benutzer:** ${currentAnalysis.user}
+- **Analysiert am:** ${new Date().toLocaleDateString('de-DE')} ${new Date().toLocaleTimeString('de-DE')}
+- **Session-Dauer:** ${Math.floor(currentAnalysis.sessionTime / 60000)} Minuten
+- **Input-Länge:** ${currentAnalysis.inputText.length} Zeichen
+
+## 🎯 Haupt-Archetyp: ${currentAnalysis.primary}
+Dein dominanter Persönlichkeitstyp - zeigt sich in deinen Hauptentscheidungen und Werten.
+
+## 🔄 Neben-Archetyp: ${currentAnalysis.secondary}
+Ergänzt und balanciert deinen Haupt-Archetyp - zeigt sich in bestimmten Situationen.
+
+## ⭐ Tertiär-Archetyp: ${currentAnalysis.tertiary}
+Weitere wichtige Persönlichkeitsaspekte - zeigt sich in speziellen Kontexten.
+
+## 📊 Vollständige Archetyp-Verteilung:
+
+${Object.entries(currentAnalysis.scores)
+    .sort(([,a], [,b]) => b - a)
+    .map(([arch, score], index) => `${index + 1}. ${arch}: ${score} Punkte`)
+    .join('\n')}
+
+## 💡 Empfehlungen:
+- Nutze deinen ${currentAnalysis.primary}-Archetyp für wichtige Entscheidungen
+- Integriere ${currentAnalysis.secondary}-Eigenschaften für Balance
+- Entwickle ${currentAnalysis.tertiary}-Aspekte für persönliches Wachstum
+- Alle drei Archetypen ergänzen sich zu deiner einzigartigen Persönlichkeit
+
+## 🔐 Authentifizierung:
+Diese Analyse wurde für den angemeldeten Benutzer ${currentAnalysis.user} erstellt.
+Session-ID: ${currentAnalysis.timestamp}`;
+        }
+        
+        function generateImagePrompt() {
+            return `# Bild-Prompt für ${currentAnalysis.primary}-${currentAnalysis.secondary}-${currentAnalysis.tertiary} Archetyp
+
+## 📋 Session-Info:
+- **Benutzer:** ${currentAnalysis.user}
+- **Erstellt:** ${new Date().toLocaleDateString('de-DE')}
+
+## DALL-E / Midjourney Prompt:
+
+"A mystical portrait representing the ${currentAnalysis.primary} archetype with elements of ${currentAnalysis.secondary} and ${currentAnalysis.tertiary}, fantasy art style, warm golden lighting, detailed character design, archetypal symbolism, Jung psychology inspired, digital art, high quality"
+
+## Alternative Prompts:
+
+1. "Person embodying ${currentAnalysis.primary} archetype, ${currentAnalysis.secondary} and ${currentAnalysis.tertiary} secondary traits, mystical background, symbolic elements"
+
+2. "${currentAnalysis.primary} character with ${currentAnalysis.secondary} and ${currentAnalysis.tertiary} influences, fantasy portrait, archetypal symbols, warm colors"
+
+3. "Jung archetype visualization: ${currentAnalysis.primary} primary, ${currentAnalysis.secondary} secondary, ${currentAnalysis.tertiary} tertiary, symbolic art, detailed portrait"
+
+## Stil-Empfehlungen:
+- Fantasy/Mystical Art Style
+- Warme, goldene Farbtöne
+- Symbolische Elemente für alle drei Archetypen
+- Detaillierte Charakterdarstellung
+- Archetyp-spezifische Symbole
+
+## 🔐 Authentifizierung:
+Erstellt für: ${currentAnalysis.user}
+Session-ID: ${currentAnalysis.timestamp}
+Basis: Archetypen-Schmied Komplettanalyse mit Anmeldung`;
+        }
+        
+        function generateChatGPTConfig() {
+            const config = {
+                name: `Archetyp-Assistent: ${currentAnalysis.primary}`,
+                description: `Personalisierter GPT basierend auf ${currentAnalysis.primary}, ${currentAnalysis.secondary} und ${currentAnalysis.tertiary} Archetypen`,
+                instructions: `Du bist ein personalisierter Assistent basierend auf den Jung'schen Archetypen ${currentAnalysis.primary} (primär), ${currentAnalysis.secondary} (sekundär) und ${currentAnalysis.tertiary} (tertiär). Antworte authentisch zu diesen Archetypen-Eigenschaften und unterstütze den User aus dieser dreifachen Perspektive.`,
+                conversation_starters: [
+                    `Wie kann ich als ${currentAnalysis.primary} diese Herausforderung angehen?`,
+                    `Was würden meine ${currentAnalysis.secondary} und ${currentAnalysis.tertiary} Archetypen dazu sagen?`,
+                    "Hilf mir bei einer Entscheidung aus meiner Archetyp-Perspektive",
+                    "Erkläre mir meine drei Haupt-Archetypen"
+                ],
+                knowledge_cutoff: new Date().toISOString().split('T')[0],
+                capabilities: {
+                    web_browsing: false,
+                    dalle_image_generation: true,
+                    code_interpreter: false
+                },
+                session_info: {
+                    user: currentAnalysis.user,
+                    session_id: currentAnalysis.timestamp,
+                    created: new Date().toISOString()
+                },
+                archetyp_data: {
+                    primary: currentAnalysis.primary,
+                    secondary: currentAnalysis.secondary,
+                    tertiary: currentAnalysis.tertiary,
+                    scores: currentAnalysis.scores,
+                    analysis_date: currentAnalysis.timestamp,
+                    source: "Archetypen-Schmied Komplettanalyse mit Anmeldung"
+                }
+            };
+            
+            return JSON.stringify(config, null, 2);
+        }
+        
+        // Initialisierung
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔥 Archetypen-Schmied mit Anmeldung geladen');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Archetypen-Schmied Download</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a0f0a, #2d1810);
+            color: #ff8c00;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(26,15,10,0.9);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #ff8c00;
+            box-shadow: 0 0 50px rgba(255,140,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff8c00;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            border-radius: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px;
+            box-shadow: 0 5px 20px rgba(255,140,0,0.4);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255,140,0,0.6);
+        }
+        .info {
+            background: rgba(255,140,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,140,0,0.3);
+        }
+        .voice-btn {
+            background: linear-gradient(135deg, #ff4500, #ff6600);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(255,69,0,0.4);
+            transition: all 0.3s ease;
+        }
+        .voice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,69,0,0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Archetypen-Schmied</h1>
+        <h2>📦 Sofort-Download</h2>
+        
+        <div class="info">
+            <p><strong>Komplette Web-App:</strong> Schmied-Video + Voice-Chat + Text-Analyse</p>
+            <p><strong>Funktioniert:</strong> Offline im Browser</p>
+            <p><strong>Größe:</strong> ~2MB</p>
+        </div>
+        
+        <button class="download-btn" onclick="downloadApp()">
+            📥 Archetypen-Schmied herunterladen
+        </button>
+        
+        <div class="info">
+            <h3>🎙️ Voice-Chat:</h3>
+            <button class="voice-btn" onclick="window.open('https://elevenlabs.io/convai/agent_01jxn7kxjpfvt87rphxdnq1ddj', '_blank')">
+                🔥 Direkt mit Schmied sprechen
+            </button>
+        </div>
+        
+        <div class="info">
+            <h3>📖 Nach dem Download:</h3>
+            <p>1. ZIP-Datei entpacken</p>
+            <p>2. index.html im Browser öffnen</p>
+            <p>3. Archetypen-Analyse starten! 🎯</p>
+        </div>
+    </div>
+    
+    <script>
+        function downloadApp() {
+            // Erstelle ZIP-Datei direkt im Browser
+            console.log('📦 Erstelle Download...');
+            
+            // Zeige Download-Info
+            const btn = document.querySelector('.download-btn');
+            btn.innerHTML = '⏳ Bereite Download vor...';
+            btn.disabled = true;
+            
+            // Simuliere kurze Wartezeit
+            setTimeout(() => {
+                // Erstelle Download-Link für GitHub
+                const githubZip = 'https://github.com/Narion2025/CookieGUARD/archive/refs/heads/main.zip';
+                
+                // Erstelle temporären Download-Link
+                const link = document.createElement('a');
+                link.href = githubZip;
+                link.download = 'archetypen-schmied.zip';
+                link.style.display = 'none';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Reset Button
+                btn.innerHTML = '✅ Download gestartet!';
+                setTimeout(() => {
+                    btn.innerHTML = '📥 Archetypen-Schmied herunterladen';
+                    btn.disabled = false;
+                }, 3000);
+                
+                console.log('✅ Download gestartet');
+            }, 1000);
+        }
+        
+        console.log('🔥 Archetypen-Schmied Download-Seite geladen');
+    </script>
+</body>
+</html> 

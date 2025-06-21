@@ -1,168 +1,142 @@
-# CookieGUARD
+# Multi-AI Desktop
 
-Eine Browser-Erweiterung, die automatisch Cookie-Banner erkennt und diese basierend auf einer datenschutzfreundlichen Risikobewertung verwaltet.
+Eine lokale Desktop-Anwendung für die gleichzeitige Nutzung mehrerer KI-Agenten (GPT, Claude, Gemini, etc.) in einem gemeinsamen Chat-Interface.
 
-## Features
+## 🚀 Features
 
-- Automatische Risikobewertung von Cookie-Bannern
-- Intelligente Verwaltung von Cookie-Einstellungen
-- Detaillierte Analyse von Cookie-Verwendung
-- Rechtliche Compliance-Prüfung (GDPR, ePrivacy, TTDSG)
-- Mehrsprachige Unterstützung (aktuell Deutsch)
+- **Multi-Agent-Chat**: Mehrere KI-Modelle können gleichzeitig auf deine Fragen antworten
+- **Lokale Desktop-App**: Läuft komplett offline auf deinem Computer
+- **Projekt-Management**: Organisiere deine Chats in Projekten
+- **Agent-Verwaltung**: Einfaches Hinzufügen und Konfigurieren von KI-Agenten
+- **Export-Funktionen**: Exportiere Konversationen als Markdown oder JSON
+- **Dark/Light Theme**: Anpassbare Benutzeroberfläche
+- **Cursor Cloud Integration**: Nutze bestehende Cursor-Sessions
 
-## Installation
+## 📋 Voraussetzungen
+
+- Node.js 18+ 
+- npm oder yarn
+- API-Schlüssel für die gewünschten KI-Dienste:
+  - OpenAI API Key (für GPT-Modelle)
+  - Anthropic API Key (für Claude)
+  - Google AI API Key (für Gemini)
+  - Cursor Session Token (optional)
+
+## 🛠️ Installation
 
 1. Repository klonen:
 ```bash
-git clone https://github.com/yourusername/CookieGUARD.git
-cd CookieGUARD
+git clone https://github.com/yourusername/multi-ai-desktop.git
+cd multi-ai-desktop
 ```
 
-2. Erweiterung in Chrome laden:
-- Öffne Chrome und gehe zu `chrome://extensions/`
-- Aktiviere den "Entwicklermodus"
-- Klicke auf "Entpackte Erweiterung laden"
-- Wähle den `extension`-Ordner aus
-
-## Crawler
-
-Der CookieGUARD-Crawler analysiert Webseiten auf Cookie-Banner und deren Compliance mit Datenschutzrichtlinien.
-
-### Installation des Crawlers
-
+2. Abhängigkeiten installieren:
 ```bash
-cd crawler
 npm install
 ```
 
-### Ausführung des Crawlers
-
-1. URLs in `urls.txt` hinzufügen
-2. Crawler starten:
+3. App starten:
 ```bash
-./run.sh
+npm start
 ```
 
-### Crawler-Funktionen
+## 🔧 Konfiguration
 
-- **Cookie-Banner-Analyse**
-  - Erkennung von Banner-Selektoren
-  - Analyse des Banner-Verhaltens
-  - Identifikation von Interaktionsmöglichkeiten
+### Agenten hinzufügen
 
-- **Cookie-Analyse**
-  - Kategorisierung von Cookies
-  - Analyse von Cookie-Eigenschaften
-  - Tracking von Cookie-Lebenszyklen
+1. Klicke auf "Agenten verwalten" in der Sidebar
+2. Wähle den Agent-Typ (OpenAI, Anthropic, Google, Cursor)
+3. Gib deinen API-Schlüssel ein
+4. Wähle das gewünschte Modell
+5. Optional: Füge einen System-Prompt hinzu
 
-- **Rechtliche Compliance**
-  - GDPR-Konformität
-  - ePrivacy-Richtlinie
-  - TTDSG-Anforderungen
+### Projekte erstellen
 
-- **Automatisierungsdaten**
-  - Klick-Sequenzen
-  - Timing-Informationen
-  - Fehlerbehandlung
+- Klicke auf "Neues Projekt" oder nutze `Cmd/Ctrl + N`
+- Projekte werden automatisch alle 5 Minuten gespeichert
+- Manuelle Speicherung mit `Cmd/Ctrl + S`
 
-### Datenstruktur
+## 🎮 Verwendung
 
-Der Crawler speichert die Ergebnisse in `data/crawl-results.json`:
+1. **Agent auswählen**: Wähle die Agenten aus, die auf deine Frage antworten sollen
+2. **Frage stellen**: Tippe deine Frage ein und drücke Enter
+3. **Antworten vergleichen**: Alle ausgewählten Agenten antworten nacheinander
+4. **Exportieren**: Exportiere interessante Konversationen als Markdown
 
-```json
-{
-  "domain.com": {
-    "timestamp": "2024-03-21T12:00:00Z",
-    "banner": {
-      "selectors": {
-        "container": ["#cookie-banner"],
-        "accept": [".accept-button"],
-        "reject": [".reject-button"],
-        "settings": [".settings-button"]
-      },
-      "behavior": {
-        "appearsOn": "load",
-        "delay": 0,
-        "reappears": false
-      }
-    },
-    "cookies": {
-      "essential": [...],
-      "functional": [...],
-      "analytics": [...],
-      "marketing": [...]
-    },
-    "compliance": {
-      "gdpr": {
-        "required": true,
-        "checks": {...},
-        "violations": []
-      },
-      "eprivacy": {...},
-      "ttdsg": {...}
-    },
-    "automation": {
-      "sequences": {...},
-      "timing": {...},
-      "errorHandling": {...}
-    }
-  }
-}
-```
+## ⌨️ Tastenkürzel
 
-### Rechtliche Anforderungen
+- `Cmd/Ctrl + N`: Neues Projekt
+- `Cmd/Ctrl + S`: Projekt speichern
+- `Cmd/Ctrl + Shift + A`: Agent hinzufügen
+- `Cmd/Ctrl + ,`: Einstellungen öffnen
+- `Enter`: Nachricht senden
+- `Shift + Enter`: Neue Zeile in Nachricht
 
-#### GDPR
-- Einwilligung muss aktiv gegeben werden
-- Ablehnung muss gleichwertig möglich sein
-- Detaillierte Informationen über Cookie-Zweck
-- Speicherdauer muss angegeben werden
-- Drittanbieter müssen genannt werden
-- Widerrufsmöglichkeit muss bestehen
-
-#### ePrivacy
-- Cookie-Informationen müssen bereitgestellt werden
-- Tracking-Informationen müssen transparent sein
-- Opt-Out-Möglichkeit muss vorhanden sein
-- Speicherungsinformationen müssen bereitgestellt werden
-
-#### TTDSG
-- Deutsche Datenschutzinformationen
-- Deutsche Einstellungsmöglichkeiten
-- Deutsche Button-Beschriftungen
-- Deutsche Datenschutzerklärung
-
-## Projektstruktur
+## 🏗️ Architektur
 
 ```
-CookieGUARD/
-├── extension/
-│   ├── manifest.json
-│   ├── content-script.js
-│   ├── popup.js
-│   └── styles/
-├── crawler/
-│   ├── crawler.js
-│   ├── package.json
-│   ├── urls.txt
-│   └── data/
-└── README.md
+multi-ai-desktop/
+├── src/
+│   ├── main/           # Electron Main Process
+│   │   ├── main.js     # Hauptprozess
+│   │   └── preload.js  # Preload Script
+│   ├── renderer/       # Frontend
+│   │   ├── index.html  # Haupt-HTML
+│   │   ├── styles/     # CSS-Dateien
+│   │   ├── components/ # UI-Komponenten
+│   │   └── utils/      # Hilfsfunktionen
+│   ├── services/       # Business Logic
+│   │   ├── agentRegistry.js
+│   │   └── chatOrchestrator.js
+│   └── adapters/       # KI-Service-Adapter
+│       ├── openaiAdapter.js
+│       ├── anthropicAdapter.js
+│       ├── googleAdapter.js
+│       └── cursorAdapter.js
 ```
 
-## Abhängigkeiten
+## 🔐 Sicherheit
 
-- Chrome Extension API
-- Puppeteer (Crawler)
-- Node.js (Crawler)
+- API-Schlüssel werden lokal verschlüsselt gespeichert
+- Keine Daten werden an externe Server gesendet (außer an die KI-APIs)
+- Alle Chats und Projekte bleiben auf deinem Computer
 
-## Mitwirken
+## 🐛 Bekannte Probleme
 
-1. Fork erstellen
-2. Feature-Branch erstellen (`git checkout -b feature/AmazingFeature`)
-3. Änderungen committen (`git commit -m 'Add some AmazingFeature'`)
-4. Branch pushen (`git push origin feature/AmazingFeature`)
-5. Pull Request erstellen
+- Cursor Cloud Integration ist noch experimentell
+- Streaming-Antworten noch nicht implementiert
+- Regenerierung von Antworten in Entwicklung
 
-## Lizenz
+## 🤝 Beitragen
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe [LICENSE](LICENSE) für Details. 
+Pull Requests sind willkommen! Für größere Änderungen bitte erst ein Issue erstellen.
+
+## 📄 Lizenz
+
+MIT License - siehe [LICENSE](LICENSE) Datei
+
+## 🚧 Roadmap
+
+### Version 0.2.0
+- [ ] Streaming-Antworten
+- [ ] Workflow-Engine für Agent-Ketten
+- [ ] Bessere Fehlerbehandlung
+- [ ] Toast-Benachrichtigungen
+
+### Version 0.3.0
+- [ ] Plugin-System für neue Agenten
+- [ ] Vektor-Datenbank für Konversations-Memory
+- [ ] Meta-Agent für automatische Optimierung
+- [ ] Cloud-Sync (optional)
+
+## 💡 Tipps
+
+- Nutze verschiedene Modelle für unterschiedliche Aufgaben
+- Claude ist gut für kreative Aufgaben
+- GPT-4 für komplexe Reasoning-Aufgaben
+- Gemini für multimodale Aufgaben (wenn implementiert)
+- Kombiniere mehrere Agenten für beste Ergebnisse
+
+---
+
+Built with ❤️ using Electron, Node.js, and multiple AI APIs 

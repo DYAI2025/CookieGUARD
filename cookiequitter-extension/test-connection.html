@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookieQuitter - Verbindungstest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .test-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🤖 CookieQuitter Verbindungstest</h1>
+        
+        <p>Diese Seite testet die Verbindung zwischen Popup und Background-Script:</p>
+        
+        <div>
+            <button class="test-button" onclick="testConnection()">🔗 Verbindung testen</button>
+            <button class="test-button" onclick="testGetStatus()">📊 Status abrufen</button>
+            <button class="test-button" onclick="testStartBot()">🚀 Bot-Start testen</button>
+            <button class="test-button" onclick="clearResults()">🗑️ Ergebnisse löschen</button>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            results.appendChild(div);
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testConnection() {
+            addResult('🔗 Teste Verbindung zum Background-Script...', 'info');
+            
+            try {
+                if (typeof chrome === 'undefined' || !chrome.runtime) {
+                    throw new Error('Chrome Extension API nicht verfügbar');
+                }
+                
+                const response = await sendMessage({ action: 'getStatus' });
+                addResult(`✅ Verbindung erfolgreich!\nAntwort: ${JSON.stringify(response, null, 2)}`, 'success');
+            } catch (error) {
+                addResult(`❌ Verbindungsfehler: ${error.message}`, 'error');
+            }
+        }
+
+        async function testGetStatus() {
+            addResult('📊 Teste Status-Abruf...', 'info');
+            
+            try {
+                const response = await sendMessage({ action: 'getStatus' });
+                addResult(`✅ Status erhalten:\n${JSON.stringify(response, null, 2)}`, 'success');
+            } catch (error) {
+                addResult(`❌ Status-Fehler: ${error.message}`, 'error');
+            }
+        }
+
+        async function testStartBot() {
+            addResult('🚀 Teste Bot-Start (ohne echte Websites)...', 'info');
+            
+            try {
+                const response = await sendMessage({
+                    action: 'startBot',
+                    preference: 'block',
+                    websites: []
+                });
+                addResult(`✅ Bot-Start Antwort:\n${JSON.stringify(response, null, 2)}`, 'success');
+            } catch (error) {
+                addResult(`❌ Bot-Start Fehler: ${error.message}`, 'error');
+            }
+        }
+
+        function sendMessage(message) {
+            return new Promise((resolve, reject) => {
+                try {
+                    console.log('📞 Sending message:', message);
+                    
+                    chrome.runtime.sendMessage(message, (response) => {
+                        if (chrome.runtime.lastError) {
+                            console.error('📞 Runtime error:', chrome.runtime.lastError);
+                            reject(new Error(chrome.runtime.lastError.message));
+                        } else if (!response) {
+                            console.error('📞 No response received');
+                            reject(new Error('Keine Antwort vom Background-Script erhalten'));
+                        } else {
+                            console.log('📞 Response received:', response);
+                            resolve(response);
+                        }
+                    });
+                } catch (error) {
+                    console.error('📞 Send message error:', error);
+                    reject(error);
+                }
+            });
+        }
+
+        // Auto-Test beim Laden
+        document.addEventListener('DOMContentLoaded', () => {
+            addResult('🤖 CookieQuitter Verbindungstest geladen', 'info');
+            
+            if (typeof chrome === 'undefined' || !chrome.runtime) {
+                addResult('❌ Chrome Extension API nicht verfügbar - Seite muss als Extension geöffnet werden', 'error');
+            } else {
+                addResult('✅ Chrome Extension API verfügbar', 'success');
+            }
+        });
+    </script>
+</body>
+</html> 

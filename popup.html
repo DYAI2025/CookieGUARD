@@ -41,16 +41,60 @@
         <h3>Statistiken</h3>
         <div class="stats-grid">
           <div class="stat-item">
-            <div class="stat-number" id="blockedCount">0</div>
-            <div class="stat-label">Blockiert</div>
+            <div class="stat-number" id="blocked-count">-</div>
+            <div class="stat-label">Blocked Today</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number" id="essentialCount">0</div>
-            <div class="stat-label">Essentiell</div>
+            <div class="stat-number" id="total-sites">-</div>
+            <div class="stat-label">Total Sites</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-number" id="acceptedCount">0</div>
-            <div class="stat-label">Akzeptiert</div>
+        </div>
+      </div>
+      
+      <!-- 🤖 Cookie Bot Section -->
+      <div class="section">
+        <h3>🤖 Cookie Bot</h3>
+        <p class="description">Automatisch Cookie-Präferenzen auf deinen Lieblings-Sites setzen</p>
+        
+        <div class="bot-controls">
+          <div class="preference-selector">
+            <label>Standard-Präferenz:</label>
+            <select id="bot-preference">
+              <option value="block">🔴 Alle Cookies ablehnen</option>
+              <option value="essential">🟡 Nur notwendige Cookies</option>
+              <option value="accept">🟢 Alle Cookies akzeptieren</option>
+            </select>
+          </div>
+          
+          <div class="bot-actions">
+            <button id="start-bot-btn" class="btn btn-primary">
+              🚀 Bot starten
+            </button>
+            <button id="stop-bot-btn" class="btn btn-secondary" disabled>
+              ⏹️ Bot stoppen
+            </button>
+          </div>
+          
+          <div class="bot-status" id="bot-status">
+            <div class="status-item">
+              <span class="status-label">Status:</span>
+              <span class="status-value" id="bot-status-text">Bereit</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Verarbeitet:</span>
+              <span class="status-value" id="bot-processed">0</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">In Queue:</span>
+              <span class="status-value" id="bot-queue">0</span>
+            </div>
+          </div>
+          
+          <div class="bot-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="bot-progress-fill"></div>
+            </div>
+            <div class="progress-text" id="bot-progress-text">Klicke "Bot starten" um zu beginnen</div>
           </div>
         </div>
       </div>

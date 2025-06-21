@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "CookieQuitter",
+  "version": "1.0.0",
+  "description": "🤖 Proaktiver Cookie-Bot - Nie wieder Cookie-Banner! Automatisch Cookie-Präferenzen auf deinen Lieblings-Sites setzen.",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "history",
+    "notifications",
+    "tabs",
+    "bookmarks"
+  ],
+  
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/quitter-16.png",
+      "32": "icons/quitter-32.png",
+      "48": "icons/quitter-48.png",
+      "128": "icons/quitter-128.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/quitter-16.png",
+    "32": "icons/quitter-32.png",
+    "48": "icons/quitter-48.png",
+    "128": "icons/quitter-128.png"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+} 

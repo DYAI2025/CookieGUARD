@@ -348,6 +348,189 @@ class CookieGuardianPopup {
 }
 
 // Initialize popup when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  new CookieGuardianPopup();
+document.addEventListener('DOMContentLoaded', function() {
+  initializePopup();
+  loadCurrentTabStatus();
+  loadGlobalSettings();
+  
+  // 🤖 Cookie Bot Initialization
+  initializeCookieBot();
 });
+
+// 🤖 Cookie Bot Functions
+function initializeCookieBot() {
+  const startBtn = document.getElementById('start-bot-btn');
+  const stopBtn = document.getElementById('stop-bot-btn');
+  const preferenceSelect = document.getElementById('bot-preference');
+  
+  // Event Listeners
+  startBtn.addEventListener('click', startCookieBot);
+  stopBtn.addEventListener('click', stopCookieBot);
+  
+  // Load saved preference
+  chrome.storage.local.get(['botPreference'], (result) => {
+    if (result.botPreference) {
+      preferenceSelect.value = result.botPreference;
+    }
+  });
+  
+  // Save preference on change
+  preferenceSelect.addEventListener('change', () => {
+    chrome.storage.local.set({ botPreference: preferenceSelect.value });
+  });
+  
+  // Update bot status periodically
+  updateBotStatus();
+  setInterval(updateBotStatus, 2000);
+}
+
+async function startCookieBot() {
+  const preference = document.getElementById('bot-preference').value;
+  const startBtn = document.getElementById('start-bot-btn');
+  const stopBtn = document.getElementById('stop-bot-btn');
+  
+  try {
+    startBtn.disabled = true;
+    startBtn.textContent = '🔄 Starte Bot...';
+    
+    const response = await chrome.runtime.sendMessage({
+      action: 'startCookieBot',
+      preference: preference
+    });
+    
+    if (response.success) {
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      
+      document.getElementById('bot-status').classList.add('running');
+      document.getElementById('bot-status-text').textContent = 'Läuft';
+      document.getElementById('bot-progress-text').textContent = 'Bot analysiert deine Lieblings-Sites...';
+      
+      showBotNotification('🤖 Cookie Bot gestartet!', 'Der Bot besucht jetzt deine Lieblings-Sites und setzt Cookie-Präferenzen.');
+    } else {
+      throw new Error(response.error || 'Bot konnte nicht gestartet werden');
+    }
+  } catch (error) {
+    console.error('Error starting bot:', error);
+    showBotNotification('❌ Fehler', 'Bot konnte nicht gestartet werden: ' + error.message);
+  } finally {
+    startBtn.textContent = '🚀 Bot starten';
+    if (startBtn.disabled) {
+      // Keep disabled if bot is running
+    } else {
+      startBtn.disabled = false;
+    }
+  }
+}
+
+async function stopCookieBot() {
+  const startBtn = document.getElementById('start-bot-btn');
+  const stopBtn = document.getElementById('stop-bot-btn');
+  
+  try {
+    await chrome.runtime.sendMessage({ action: 'stopCookieBot' });
+    
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    
+    document.getElementById('bot-status').classList.remove('running');
+    document.getElementById('bot-status-text').textContent = 'Gestoppt';
+    document.getElementById('bot-progress-text').textContent = 'Bot wurde gestoppt';
+    document.getElementById('bot-progress-fill').style.width = '0%';
+    
+    showBotNotification('⏹️ Bot gestoppt', 'Cookie Bot wurde erfolgreich gestoppt.');
+  } catch (error) {
+    console.error('Error stopping bot:', error);
+  }
+}
+
+async function updateBotStatus() {
+  try {
+    const status = await chrome.runtime.sendMessage({ action: 'getBotStatus' });
+    
+    if (status) {
+      document.getElementById('bot-processed').textContent = status.processedSites;
+      document.getElementById('bot-queue').textContent = status.queueLength;
+      
+      const startBtn = document.getElementById('start-bot-btn');
+      const stopBtn = document.getElementById('stop-bot-btn');
+      
+      if (status.isRunning) {
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+        document.getElementById('bot-status').classList.add('running');
+        document.getElementById('bot-status-text').textContent = 'Läuft';
+        
+        // Update progress
+        const totalSites = status.processedSites + status.queueLength;
+        const progress = totalSites > 0 ? (status.processedSites / totalSites) * 100 : 0;
+        document.getElementById('bot-progress-fill').style.width = progress + '%';
+        document.getElementById('bot-progress-text').textContent = 
+          `${status.processedSites} von ${totalSites} Sites verarbeitet`;
+          
+        if (status.queueLength === 0 && status.processedSites > 0) {
+          // Bot finished
+          setTimeout(() => {
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            document.getElementById('bot-status').classList.remove('running');
+            document.getElementById('bot-status-text').textContent = 'Fertig';
+            document.getElementById('bot-progress-text').textContent = 
+              `✅ ${status.processedSites} Sites erfolgreich konfiguriert!`;
+          }, 2000);
+        }
+      } else {
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        document.getElementById('bot-status').classList.remove('running');
+        
+        if (status.processedSites > 0) {
+          document.getElementById('bot-status-text').textContent = 'Fertig';
+          document.getElementById('bot-progress-text').textContent = 
+            `✅ ${status.processedSites} Sites konfiguriert`;
+        } else {
+          document.getElementById('bot-status-text').textContent = 'Bereit';
+          document.getElementById('bot-progress-text').textContent = 
+            'Klicke "Bot starten" um zu beginnen';
+        }
+      }
+    }
+  } catch (error) {
+    // Background script might not be ready
+    console.log('Bot status not available yet');
+  }
+}
+
+function showBotNotification(title, message) {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = 'bot-notification';
+  notification.innerHTML = `
+    <div class="notification-title">${title}</div>
+    <div class="notification-message">${message}</div>
+  `;
+  
+  // Add styles
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10000;
+    max-width: 300px;
+    font-size: 14px;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Remove after 5 seconds
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.parentNode.removeChild(notification);
+    }
+  }, 5000);
+}
